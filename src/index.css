@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-warm: #FDFCFA;
+    --bg-surface: #F7F4EE;
+    --bg-dark: #1C1A17;
+    --bg-dark-surface: #252220;
+    --gold: #B08D4F;
+    --gold-light: #D4B875;
+    --gold-dark: #8C6E3A;
+    --text-primary: #1C1A17;
+    --text-muted: #57524A;
+    --text-subtle: #8A8378;
+    --border-line: #E7E1D8;
+    --border-subtle: #EFEAE1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-warm);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover, .animate-marquee:active {
+  animation-play-state: paused;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F4EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4B875;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B08D4F;
+}
