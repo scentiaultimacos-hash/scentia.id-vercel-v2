@@ -13,29 +13,30 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-* { box-sizing: border-box; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 :root {
   --gold: #B08D4F; --gold-dark: #977440; --gold-light: #D4B875; --gold-glow: #F4C057;
   --bg: #FDFCFA; --bg-tint: #F9F4EA; --text: #1C1A17; --muted: #7A7266;
-  --subtle: #5A544A; --border: #E8DFD0; --border-soft: #EBE2D3; --red: #C94A4A;
+  --subtle: #5A544A; --border: #E8DFD0; --border-soft: #EBE2D3;
 }
 body {
   margin: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 400; -webkit-font-smoothing: antialiased;
 }
+button, .chip, .card, .admin-trigger, .toggle { touch-action: manipulation; }
 ::selection { background: rgba(212, 184, 117, 0.3); }
 
 /* HEADER */
 .top-header {
   position: sticky; top: 0; z-index: 30;
-  background: rgba(253, 252, 250, 0.85);
-  backdrop-filter: saturate(180%) blur(12px);
+  background: rgba(253, 252, 250, 0.9);
+  backdrop-filter: saturate(180%) blur(10px); -webkit-backdrop-filter: saturate(180%) blur(10px);
   border-bottom: 1px solid var(--border-soft);
 }
 .top-header-inner {
@@ -63,39 +64,40 @@ body {
 }
 
 /* HERO */
-.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 12px; text-align: center; }
+.hero { max-width: 900px; margin: 0 auto; padding: 36px 20px 12px; text-align: center; }
 .hero h1 {
   font-family: 'Playfair Display', serif; font-weight: 500;
-  font-size: clamp(1.7rem, 3.8vw, 2.5rem); margin: 0 0 10px; letter-spacing: -0.01em; line-height: 1.2;
+  font-size: clamp(1.6rem, 3.8vw, 2.4rem); margin: 0 0 8px; letter-spacing: -0.01em; line-height: 1.2;
 }
-.hero p { color: var(--muted); margin: 0 0 28px; font-size: 15px; font-weight: 300; }
+.hero p { color: var(--muted); margin: 0 0 24px; font-size: 14px; font-weight: 300; }
 .hero p em { color: var(--gold); font-style: italic; }
 
-.searchbar { position: relative; margin-bottom: 16px; }
+.searchbar { position: relative; margin-bottom: 14px; }
 .searchbar input {
-  width: 100%; padding: 16px 44px 16px 52px; border: 1px solid var(--border); border-radius: 999px;
+  width: 100%; padding: 14px 44px 14px 48px; border: 1px solid var(--border); border-radius: 999px;
   font-size: 15px; background: #fff; outline: none; transition: all .15s;
   box-shadow: 0 4px 24px rgba(176, 141, 79, 0.06); font-family: inherit; color: var(--text);
 }
-.searchbar input::placeholder { color: var(--muted); }
+.searchbar input::placeholder { color: var(--muted); font-size: 14px; }
 .searchbar input:focus { border-color: var(--gold); box-shadow: 0 4px 24px rgba(176, 141, 79, 0.15); }
 .searchbar svg {
-  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
-  width: 20px; height: 20px; color: var(--muted); pointer-events: none;
+  position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; color: var(--muted); pointer-events: none;
 }
 .searchbar .clear-x {
-  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-  width: 24px; height: 24px; border-radius: 50%; border: none;
-  background: var(--border); color: var(--subtle); cursor: pointer; font-size: 14px;
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px; border-radius: 50%; border: none;
+  background: var(--border); color: var(--subtle); cursor: pointer; font-size: 15px;
   display: none; align-items: center; justify-content: center;
 }
 .searchbar .clear-x.show { display: flex; }
 
 .filter-toggle {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border);
+  padding: 10px 20px; border-radius: 999px; border: 1px solid var(--border);
   background: #fff; color: var(--muted); font-size: 13px; cursor: pointer;
   transition: all .15s; margin: 0 auto 16px; font-family: inherit; font-weight: 500;
+  min-height: 40px;
 }
 .filter-toggle:hover { border-color: var(--gold); color: var(--gold); }
 .filter-toggle.open { background: var(--gold); color: #fff; border-color: var(--gold); }
@@ -120,7 +122,7 @@ body {
 .chip {
   padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
   background: #fff; color: var(--subtle); cursor: pointer; font-size: 12px;
-  transition: all .15s; font-family: inherit;
+  transition: all .15s; font-family: inherit; min-height: 30px;
 }
 .chip:hover { border-color: var(--gold-light); color: var(--gold); }
 .chip.active { background: var(--gold); color: #fff; border-color: var(--gold); }
@@ -128,99 +130,95 @@ body {
 
 /* NEW SECTION */
 .new-section {
-  max-width: 1200px; margin: 0 auto; padding: 22px 24px;
+  max-width: 1200px; margin: 0 auto; padding: 20px 20px;
   display: none; position: relative;
   background: linear-gradient(135deg, #FFFCF2 0%, #FFF8E8 100%);
-  border-radius: 24px; box-shadow: inset 0 0 0 1px rgba(212, 184, 117, 0.25);
+  border-radius: 20px; box-shadow: inset 0 0 0 1px rgba(212, 184, 117, 0.25);
   width: calc(100% - 32px);
 }
 .new-section.visible { display: block; }
 .new-section::before {
-  content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 2px;
+  content: ''; position: absolute; top: 0; left: 20px; right: 20px; height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold-glow), transparent); border-radius: 2px;
 }
-.new-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.new-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
 .new-header h2 {
   font-family: 'Playfair Display', serif; font-weight: 700;
-  font-size: 1.35rem; margin: 0; letter-spacing: -0.01em;
+  font-size: 1.25rem; margin: 0; letter-spacing: -0.01em;
   display: flex; align-items: center; gap: 8px;
   background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-glow) 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 .new-header .sparkle { display: inline-block; animation: rotateSparkle 3s linear infinite; }
 @keyframes rotateSparkle { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.new-header p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.new-header p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
 .new-count {
   background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold) 100%);
   color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px;
   border-radius: 999px; letter-spacing: 0.03em;
 }
 .new-scroll {
-  display: flex; gap: 14px; overflow-x: auto;
-  padding: 4px 4px 12px; scroll-snap-type: x mandatory;
+  display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 4px 10px; scroll-snap-type: x mandatory;
   scrollbar-width: thin; scrollbar-color: var(--border) transparent;
 }
-.new-scroll::-webkit-scrollbar { height: 6px; }
+.new-scroll::-webkit-scrollbar { height: 5px; }
 .new-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
-.new-scroll .card { flex: 0 0 280px; scroll-snap-align: start; animation: fadeUp .35s ease-out; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.new-scroll .card { flex: 0 0 270px; scroll-snap-align: start; }
 
 /* RESULTS */
-.results { max-width: 1200px; margin: 0 auto; padding: 20px 24px 80px; }
+.results { max-width: 1200px; margin: 0 auto; padding: 16px 20px 80px; }
 .results-bar {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
-  padding-bottom: 16px; border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 16px; gap: 10px; flex-wrap: wrap;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border-soft);
 }
 .count { font-size: 13px; color: var(--muted); }
 .count b { color: var(--text); font-weight: 600; }
 .tools { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .tools select {
-  padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px;
   font-size: 12px; background: #fff; cursor: pointer; outline: none; color: var(--text); font-family: inherit;
+  min-height: 36px;
 }
 .icon-btn {
-  padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border); background: #fff;
+  padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: #fff;
   color: var(--subtle); font-size: 12px; cursor: pointer; transition: all .15s; font-family: inherit;
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; gap: 5px; min-height: 36px;
 }
 .icon-btn:hover { border-color: var(--gold); color: var(--gold); }
 .icon-btn.active { background: var(--gold); color: #fff; border-color: var(--gold); }
 .icon-btn.active:hover { color: #fff; }
 .icon-btn svg { width: 13px; height: 13px; }
 .btn-reset {
-  padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: #fff;
-  color: var(--muted); font-size: 12px; cursor: pointer; transition: all .15s; font-family: inherit;
+  padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: #fff;
+  color: var(--muted); font-size: 12px; cursor: pointer; transition: all .15s; font-family: inherit; min-height: 36px;
 }
 .btn-reset:hover { border-color: var(--gold); color: var(--gold); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
 .grid.list { grid-template-columns: 1fr; }
-.grid.list .card { padding: 14px 18px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.grid.list .card { padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
 .grid.list .card .notes-pyramid, .grid.list .card .desc, .grid.list .card .extra-info { display: none; }
 .grid.list .card .origin { margin-bottom: 0; }
 .grid.list .card .badges { margin-bottom: 4px; }
 
 .card {
   background: #fff; border: 1px solid var(--border-soft); border-radius: 16px;
-  padding: 20px; transition: transform .15s, box-shadow .15s;
+  padding: 18px; transition: transform .15s, box-shadow .15s;
   display: flex; flex-direction: column; position: relative; cursor: pointer;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 340px;
 }
 .card:hover {
   transform: translateY(-2px); box-shadow: 0 10px 30px rgba(176, 141, 79, 0.1); border-color: var(--gold-light);
 }
 
-/* Highlight kuat untuk kartu BARU */
 .card.is-new {
   border: 1.5px solid var(--gold);
   background: linear-gradient(160deg, #FFFDF5 0%, #FFF9EC 40%, #fff 100%);
-  box-shadow: 0 6px 20px rgba(176, 141, 79, 0.15), 0 0 0 3px rgba(212, 184, 117, 0.15);
-  animation: newPulse 2.5s ease-in-out infinite;
-}
-@keyframes newPulse {
-  0%, 100% { box-shadow: 0 6px 20px rgba(176, 141, 79, 0.15), 0 0 0 3px rgba(212, 184, 117, 0.15); }
-  50%      { box-shadow: 0 8px 28px rgba(176, 141, 79, 0.25), 0 0 0 5px rgba(212, 184, 117, 0.25); }
 }
 .card.is-new::before {
   content: 'NEW'; position: absolute; top: 14px; right: -34px;
@@ -232,16 +230,16 @@ body {
 .card.is-new .fav-btn { z-index: 4; top: 10px; right: 12px; }
 
 .fav-btn {
-  position: absolute; top: 12px; right: 12px; z-index: 2;
-  width: 30px; height: 30px; border-radius: 50%; border: none; background: transparent;
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 36px; height: 36px; border-radius: 50%; border: none; background: transparent;
   color: #D0C4B5; cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: all .15s; padding: 0;
 }
 .fav-btn:hover { background: rgba(176, 141, 79, 0.1); color: var(--gold); }
 .fav-btn.active { color: var(--gold-glow); }
-.fav-btn svg { width: 18px; height: 18px; }
+.fav-btn svg { width: 20px; height: 20px; }
 
-.badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; padding-right: 30px; }
+.badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; padding-right: 34px; }
 .badge {
   font-size: 10px; text-transform: uppercase; letter-spacing: .05em;
   padding: 3px 8px; border-radius: 999px; font-weight: 600;
@@ -250,43 +248,47 @@ body {
   background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold) 100%);
   color: #fff; letter-spacing: .08em; display: inline-flex; align-items: center; gap: 4px;
 }
-.badge.new::before {
-  content: '✨'; font-size: 9px; display: inline-block; animation: sparkle 1.5s ease-in-out infinite;
-}
-@keyframes sparkle {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50%      { transform: scale(1.3) rotate(20deg); }
-}
+.badge.new::before { content: '✨'; font-size: 9px; }
 .badge.nomor { background: var(--text); color: #fff; letter-spacing: 0; }
 .badge.accords { background: var(--bg-tint); color: var(--gold-dark); }
 .badge.gender { background: #EEF2F8; color: #4A5F7A; }
 .badge.occasion { background: #FBF2E2; color: #8A6A2C; }
 .badge.waktu { background: #EDF4EE; color: #4A6A4F; }
-.card h3 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 0 0 4px; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--text); }
-.origin { font-size: 11px; color: var(--muted); margin: 0 0 10px; font-style: italic; line-height: 1.4; }
+.card h3 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 0 0 4px; font-size: 1.08rem; letter-spacing: -0.01em; color: var(--text); }
+.origin { font-size: 11px; color: var(--muted); margin: 0 0 8px; font-style: italic; line-height: 1.4; }
 .origin b { color: var(--gold-dark); font-style: normal; font-weight: 600; }
 .card .desc {
-  margin: 0 0 12px; color: var(--subtle); font-size: 13px; line-height: 1.6;
+  margin: 0 0 10px; color: var(--subtle); font-size: 12.5px; line-height: 1.55;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.notes-pyramid { background: var(--bg-tint); border-radius: 10px; padding: 10px 12px; font-size: 11px; color: var(--subtle); line-height: 1.6; margin-bottom: 10px; }
+.notes-pyramid { background: var(--bg-tint); border-radius: 10px; padding: 9px 11px; font-size: 11px; color: var(--subtle); line-height: 1.55; margin-bottom: 8px; }
 .notes-pyramid .row { display: flex; gap: 6px; }
-.notes-pyramid .lbl { min-width: 42px; font-weight: 700; color: var(--gold-dark); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
+.notes-pyramid .lbl { min-width: 40px; font-weight: 700; color: var(--gold-dark); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
 .extra-info {
-  display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px; color: var(--muted);
-  margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--border-soft);
+  display: flex; flex-wrap: wrap; gap: 5px; font-size: 10px; color: var(--muted);
+  margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--border-soft);
 }
-.extra-info span { background: var(--bg-tint); padding: 2px 7px; border-radius: 6px; }
+.extra-info span { background: var(--bg-tint); padding: 2px 6px; border-radius: 6px; }
 mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; border-radius: 2px; }
 
-.no-results { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; grid-column: 1 / -1; }
+.no-results { text-align: center; padding: 50px 20px; color: var(--muted); font-size: 14px; grid-column: 1 / -1; }
 .no-results .emoji { font-size: 32px; display: block; margin-bottom: 12px; }
+
+/* SKELETON */
+.skeleton {
+  background: linear-gradient(90deg, #f0ece7 0%, #f7f3ed 50%, #f0ece7 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.skeleton-card { height: 260px; border-radius: 16px; }
 
 /* ADMIN TRIGGER */
 .admin-trigger {
   position: fixed; right: 12px; bottom: 12px; z-index: 40;
   background: transparent; border: none; color: #C9C2B3; font-size: 11px;
-  cursor: pointer; padding: 6px 10px; border-radius: 8px; transition: all .2s;
+  cursor: pointer; padding: 8px 12px; border-radius: 8px; transition: all .2s;
   letter-spacing: 0.06em; font-family: inherit; text-transform: uppercase;
 }
 .admin-trigger:hover { color: var(--gold); background: rgba(176, 141, 79, 0.08); }
@@ -296,22 +298,24 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
   position: fixed; inset: 0; z-index: 100;
   background: rgba(28, 26, 23, 0.5); backdrop-filter: blur(4px);
   display: none; align-items: center; justify-content: center; padding: 16px;
+  overscroll-behavior: contain;
 }
 .modal.open { display: flex; }
 .modal-content {
-  background: #fff; border-radius: 20px; padding: 26px; width: 100%; max-width: 380px;
-  max-height: 90vh; overflow-y: auto;
+  background: #fff; border-radius: 20px; padding: 24px; width: 100%; max-width: 380px;
+  max-height: 90vh; overflow-y: auto; overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0 20px 60px rgba(28, 26, 23, 0.25);
   animation: slideIn .2s ease;
 }
 .modal-content.wide { max-width: 560px; }
-.modal-content.admin-wide { max-width: 560px; }
+.modal-content.admin-wide { max-width: 580px; }
 @keyframes slideIn { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.modal-header h3 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 0; font-size: 1.15rem; }
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.modal-header h3 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 0; font-size: 1.1rem; }
 .modal-close {
-  width: 32px; height: 32px; border-radius: 50%; border: none;
-  background: var(--bg-tint); color: var(--subtle); cursor: pointer; font-size: 18px;
+  width: 40px; height: 40px; border-radius: 50%; border: none;
+  background: var(--bg-tint); color: var(--subtle); cursor: pointer; font-size: 20px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .modal-close:hover { background: var(--border); }
@@ -319,22 +323,23 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 .form-group { margin-bottom: 12px; }
 .form-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
 .form-group input {
-  width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px;
-  font-size: 15px; outline: none; font-family: inherit; letter-spacing: 0.1em; color: var(--text);
+  width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px;
+  font-size: 16px; outline: none; font-family: inherit; letter-spacing: 0.1em; color: var(--text);
 }
 .form-group input:focus { border-color: var(--gold); }
 
 .btn {
   border: 1px solid var(--border); background: #fff; color: var(--text);
   padding: 12px 16px; border-radius: 10px; cursor: pointer;
-  font-size: 13px; font-weight: 500; transition: all .15s;
+  font-size: 14px; font-weight: 500; transition: all .15s;
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px; text-decoration: none; width: 100%; margin-bottom: 8px; font-family: inherit;
+  min-height: 44px;
 }
 .btn:hover { border-color: var(--gold); color: var(--gold); }
 .btn.primary { background: var(--gold); color: #fff; border-color: var(--gold); }
 .btn.primary:hover { background: var(--gold-dark); color: #fff; }
-.btn.danger { color: #B53A3A; }
+.btn.danger { color: #B53A3A; border-color: #E8C4C4; }
 .btn.danger:hover { border-color: #B53A3A; background: #FCE4E4; }
 .btn.wa { background: #25D366; color: #fff; border-color: #25D366; }
 .btn.wa:hover { background: #1FB855; color: #fff; }
@@ -352,94 +357,132 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 .admin-note code { background: var(--border); padding: 1px 5px; border-radius: 4px; font-size: 10px; color: var(--text); }
 .row-check {
   display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 8px 0 14px;
-  color: var(--subtle); cursor: pointer;
+  color: var(--subtle); cursor: pointer; min-height: 32px;
 }
-.row-check input { cursor: pointer; accent-color: var(--gold); }
+.row-check input { cursor: pointer; accent-color: var(--gold); width: 18px; height: 18px; }
 .hidden { display: none !important; }
 
-.admin-stats { display: flex; gap: 8px; margin-bottom: 16px; }
-.stat-box { flex: 1; background: var(--bg-tint); border-radius: 10px; padding: 12px; text-align: center; }
-.stat-box .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-dark); }
-.stat-box .lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-top: 2px; }
+/* ADMIN STATS */
+.admin-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.stat-box { background: var(--bg-tint); border-radius: 10px; padding: 10px 6px; text-align: center; }
+.stat-box .num { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--gold-dark); line-height: 1; }
+.stat-box .lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-top: 4px; }
 
-/* ADMIN SECTIONS */
-.admin-section {
-  margin-bottom: 18px; padding-bottom: 18px;
-  border-bottom: 1px solid var(--border-soft);
+/* ADMIN TABS */
+.admin-tabs {
+  display: flex; gap: 4px; background: var(--bg-tint); padding: 4px;
+  border-radius: 10px; margin-bottom: 16px;
 }
-.admin-section:last-of-type { border-bottom: none; padding-bottom: 0; }
-.admin-section-header {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 8px; margin-bottom: 10px; flex-wrap: wrap;
+.admin-tab {
+  flex: 1; padding: 9px 10px; border: none; background: transparent;
+  border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer;
+  color: var(--muted); font-family: inherit; transition: all .15s;
+  min-height: 38px;
 }
-.admin-section-header h4 {
-  font-size: 13px; font-weight: 700; margin: 0; color: var(--text);
-}
-.admin-hint { font-size: 10px; color: var(--muted); }
+.admin-tab.active { background: #fff; color: var(--gold-dark); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.admin-tab-panel.hidden { display: none !important; }
+
+/* ADMIN SEARCH + TOOLBAR */
 .admin-search {
-  width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
-  font-size: 13px; margin-bottom: 8px; font-family: inherit; outline: none;
+  width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px;
+  font-size: 14px; margin-bottom: 10px; font-family: inherit; outline: none;
+  background: #fff;
 }
 .admin-search:focus { border-color: var(--gold); }
+
+.admin-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 10px; flex-wrap: wrap;
+}
+.admin-toolbar .row-check { margin: 0; font-size: 12px; }
+
+.btn-small {
+  padding: 9px 12px; border: 1px solid var(--border);
+  background: #fff; border-radius: 8px; font-size: 11px;
+  cursor: pointer; font-family: inherit; font-weight: 600; color: var(--subtle);
+  transition: all .15s; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 36px;
+}
+.btn-small:hover { border-color: var(--gold); color: var(--gold); }
+.btn-small.danger {
+  color: #B53A3A; border-color: #E8C4C4; background: #FEF9F9; font-weight: 700;
+}
+.btn-small.danger:hover { background: #FCE4E4; border-color: #B53A3A; color: #B53A3A; }
+.btn-small:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ADMIN LIST */
 .admin-aroma-list {
-  max-height: 260px; overflow-y: auto;
+  max-height: 340px; overflow-y: auto; overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border-soft); border-radius: 10px; background: #fff;
 }
+.admin-aroma-list::-webkit-scrollbar { width: 6px; }
+.admin-aroma-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+
 .admin-aroma-row {
   display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-  border-bottom: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft); transition: background .12s;
+  min-height: 52px;
 }
 .admin-aroma-row:last-child { border-bottom: none; }
+.admin-aroma-row.selected { background: #FDF6E8; }
+.admin-aroma-row input[type=checkbox].row-select {
+  width: 18px; height: 18px; cursor: pointer; accent-color: var(--gold); flex-shrink: 0;
+}
 .admin-aroma-row .info { flex: 1; min-width: 0; }
 .admin-aroma-row .name {
   font-size: 13px; font-weight: 500;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
+.admin-aroma-row .name .new-dot { color: var(--gold); font-size: 9px; font-weight: 700; margin-left: 4px; }
 .admin-aroma-row .meta {
   font-size: 10px; color: var(--muted); margin-top: 1px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.admin-aroma-row .actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+.admin-aroma-row .actions { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
 
-.toggle { position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0; cursor: pointer; }
+.toggle { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; cursor: pointer; }
 .toggle input { opacity: 0; width: 0; height: 0; }
 .toggle .slider {
-  position: absolute; inset: 0; background: #ccc; border-radius: 22px;
-  cursor: pointer; transition: .2s;
+  position: absolute; inset: 0; background: #ccc; border-radius: 24px;
+  cursor: pointer; transition: .18s;
 }
 .toggle .slider::before {
-  content: ''; position: absolute; height: 16px; width: 16px;
-  left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .2s;
+  content: ''; position: absolute; height: 18px; width: 18px;
+  left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .18s;
 }
 .toggle input:checked + .slider { background: var(--gold); }
 .toggle input:checked + .slider::before { transform: translateX(18px); }
 
 .admin-delete-btn {
   background: transparent; border: none; color: #C94A4A; cursor: pointer;
-  padding: 4px 6px; border-radius: 4px; font-size: 14px; line-height: 1;
+  padding: 6px 8px; border-radius: 6px; font-size: 15px; line-height: 1;
+  min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center;
 }
 .admin-delete-btn:hover { background: #FCE4E4; }
 
-.admin-bulk-actions { display: flex; gap: 6px; margin-top: 10px; }
-.btn-small {
-  flex: 1; padding: 8px 10px; border: 1px solid var(--border);
-  background: #fff; border-radius: 8px; font-size: 11px;
-  cursor: pointer; font-family: inherit; font-weight: 500; color: var(--subtle);
-  transition: all .15s;
+.load-more-btn {
+  width: 100%; padding: 12px; border: 1px dashed var(--border); background: #FDFCFA;
+  border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 600;
+  color: var(--muted); font-family: inherit; margin-top: 10px;
+  transition: all .15s; min-height: 40px;
 }
-.btn-small:hover { border-color: var(--gold); color: var(--gold); }
+.load-more-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.admin-bulk-actions { display: flex; gap: 6px; margin-top: 10px; }
+.admin-bulk-actions .btn-small { flex: 1; }
 
 /* DETAIL MODAL */
-.detail-hero { margin-bottom: 20px; }
-.detail-hero h2 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 8px 0 4px; font-size: 1.5rem; line-height: 1.2; }
-.detail-hero .origin { font-size: 12px; margin-bottom: 12px; }
-.detail-section { margin-bottom: 18px; }
+.detail-hero { margin-bottom: 18px; }
+.detail-hero h2 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 6px 0 4px; font-size: 1.4rem; line-height: 1.2; }
+.detail-hero .origin { font-size: 12px; margin-bottom: 10px; }
+.detail-section { margin-bottom: 16px; }
 .detail-section h4 {
   font-size: 11px; font-weight: 700; color: var(--gold-dark);
   text-transform: uppercase; letter-spacing: .08em; margin: 0 0 8px;
 }
 .detail-notes {
-  background: var(--bg-tint); border-radius: 12px; padding: 14px 16px;
+  background: var(--bg-tint); border-radius: 12px; padding: 12px 14px;
   display: flex; flex-direction: column; gap: 8px;
 }
 .detail-notes .row { display: flex; gap: 10px; font-size: 13px; line-height: 1.5; }
@@ -447,7 +490,7 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
   min-width: 50px; font-weight: 700; color: var(--gold-dark); font-size: 11px;
   text-transform: uppercase; letter-spacing: .04em; padding-top: 1px;
 }
-.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
 .detail-item { background: var(--bg-tint); border-radius: 10px; padding: 10px 12px; }
 .detail-item .k {
   font-size: 10px; color: var(--muted); text-transform: uppercase;
@@ -456,7 +499,7 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 .detail-item .v { font-size: 13px; color: var(--text); font-weight: 500; }
 .detail-desc { font-size: 14px; color: var(--subtle); line-height: 1.6; margin: 0; }
 .detail-actions {
-  display: flex; gap: 8px; margin-top: 20px; padding-top: 20px;
+  display: flex; gap: 8px; margin-top: 18px; padding-top: 18px;
   border-top: 1px solid var(--border-soft); flex-wrap: wrap;
 }
 .detail-actions .btn { flex: 1; margin-bottom: 0; min-width: 100px; }
@@ -466,9 +509,34 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
   position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
   background: var(--text); color: #fff; padding: 12px 20px; border-radius: 12px;
   font-size: 13px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  z-index: 200; animation: toastIn .25s ease;
+  z-index: 200; animation: toastIn .25s ease; max-width: 90vw;
 }
 @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .hero { padding: 28px 16px 10px; }
+  .hero p { font-size: 13px; margin-bottom: 20px; }
+  .results { padding: 14px 16px 80px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .new-section { padding: 18px 16px; }
+  .new-scroll .card { flex: 0 0 250px; }
+  .tools { width: 100%; }
+  .modal-content { padding: 20px; border-radius: 16px; }
+  .modal-content.admin-wide { max-width: 100%; }
+  .admin-stats { gap: 6px; }
+  .stat-box { padding: 8px 4px; }
+  .stat-box .num { font-size: 1.15rem; }
+  .admin-aroma-list { max-height: 300px; }
+  .detail-actions .btn { min-width: 90px; font-size: 12px; padding: 10px 12px; }
+  .detail-hero h2 { font-size: 1.25rem; }
+  .top-nav a { padding: 6px 8px; font-size: 11.5px; }
+}
+@media (max-width: 380px) {
+  .brand-name { font-size: 0.95rem; }
+  .brand img { height: 24px; }
+  .top-nav a { padding: 5px 7px; font-size: 11px; }
+}
 </style>
 </head>
 <body>
@@ -476,7 +544,7 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 <header class="top-header">
   <div class="top-header-inner">
     <a href="https://scentia.id/#home" class="brand">
-      <img src="/favicon.png" alt="King Parfum Indonesia">
+      <img src="/favicon.png" alt="King Parfum Indonesia" loading="lazy">
       <div class="brand-text">
         <span class="brand-name">King Parfum</span>
         <span class="brand-sub">Indonesia</span>
@@ -494,10 +562,10 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 
 <section class="hero">
   <h1>Temukan aroma yang tepat</h1>
-  <p>Jelajahi koleksi aroma <em>King Parfum Indonesia</em> — cari, filter, dan simpan favoritmu</p>
+  <p>Jelajahi koleksi aroma <em>King Parfum Indonesia</em></p>
   <div class="searchbar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="searchInput" placeholder="Cari nama, brand asli, notes, atau kata kunci...">
+    <input type="text" id="searchInput" placeholder="Cari nama, brand asli, notes..." autocomplete="off">
     <button class="clear-x" id="clearX" title="Hapus">×</button>
   </div>
   <button class="filter-toggle" id="filterToggle">Filter aroma <span class="chev">▼</span></button>
@@ -527,7 +595,7 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 
 <section class="results">
   <div class="results-bar">
-    <div class="count" id="count">Memuat data...</div>
+    <div class="count" id="count">Memuat...</div>
     <div class="tools">
       <button class="icon-btn" id="favToggle" title="Hanya favorit">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -536,7 +604,7 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
       <select id="sortSelect">
         <option value="nomor">Nomor</option>
         <option value="nama">Nama A-Z</option>
-        <option value="accords">Karakter Aroma</option>
+        <option value="accords">Karakter</option>
         <option value="terbaru">Terbaru</option>
       </select>
       <button class="icon-btn" id="viewToggle" title="Ganti tampilan">
@@ -576,30 +644,37 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
     <div class="admin-stats">
       <div class="stat-box"><div class="num" id="statTotal">—</div><div class="lbl">Total</div></div>
       <div class="stat-box"><div class="num" id="statNew">—</div><div class="lbl">Baru</div></div>
-      <div class="stat-box"><div class="num" id="statKategori">—</div><div class="lbl">Karakter</div></div>
+      <div class="stat-box"><div class="num" id="statSelected">0</div><div class="lbl">Dipilih</div></div>
     </div>
 
-    <!-- ⭐ Kelola Aroma Baru -->
-    <div class="admin-section">
-      <div class="admin-section-header">
-        <h4>⭐ Kelola Aroma Baru</h4>
-        <span class="admin-hint">Toggle untuk tampil di section "Aroma Terbaru"</span>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="kelola">🗂 Kelola</button>
+      <button class="admin-tab" data-tab="upload">📤 Upload</button>
+    </div>
+
+    <!-- TAB: KELOLA -->
+    <div class="admin-tab-panel" data-panel="kelola">
+      <input type="text" id="adminSearch" class="admin-search" placeholder="🔍 Cari nama aroma..." autocomplete="off">
+      <div class="admin-toolbar">
+        <label class="row-check">
+          <input type="checkbox" id="selectAllChk"> Pilih semua
+        </label>
+        <button class="btn-small danger hidden" id="bulkDeleteBtn">
+          🗑 Hapus (<span id="selectedCount">0</span>)
+        </button>
       </div>
-      <input type="text" id="adminSearch" class="admin-search" placeholder="Cari nama aroma...">
       <div class="admin-aroma-list" id="adminAromaList">
         <div style="padding: 20px; text-align: center; color: var(--muted); font-size: 12px;">Memuat...</div>
       </div>
+      <button class="load-more-btn hidden" id="loadMoreBtn">Muat lebih banyak ↓</button>
       <div class="admin-bulk-actions">
-        <button class="btn-small" id="markAllBtn">✓ Tandai semua</button>
-        <button class="btn-small" id="clearAllBtn">✕ Hapus semua tanda</button>
+        <button class="btn-small" id="markAllBtn">✓ Tandai semua Baru</button>
+        <button class="btn-small" id="clearAllBtn">✕ Reset tanda Baru</button>
       </div>
     </div>
 
-    <!-- 📤 Upload -->
-    <div class="admin-section">
-      <div class="admin-section-header">
-        <h4>📤 Upload / Template</h4>
-      </div>
+    <!-- TAB: UPLOAD -->
+    <div class="admin-tab-panel hidden" data-panel="upload">
       <button class="btn primary" id="uploadBtn">⬆ Upload Excel</button>
       <button class="btn" id="templateBtn">⬇ Download Template</button>
       <label class="row-check">
@@ -609,12 +684,10 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
       <div id="uploadMsg"></div>
       <div class="admin-note">
         <b>Kolom Excel</b>: <code>No</code> · <code>Nama Aroma (Clone)</code> · <code>Nama Parfum Asli</code> · <code>Brand Asli</code> · <code>Top Notes</code> · <code>Middle Notes</code> · <code>Base Notes</code> · <code>Longevity</code> · <code>Sillage</code> · <code>Konsentrasi</code> · <code>Main Accords</code> · <code>Gender</code> · <code>Waktu</code> · <code>Musim</code> · <code>Occasion</code> · <code>Deskripsi</code> · <code>Cocok Untuk</code> · <code>Kata Kunci</code> · <code>Aroma Baru</code>.
-        <br><br>
-        <b>Aroma Baru</b>: isi <code>Ya</code> / <code>Tidak</code>. Atau pakai toggle di panel atas untuk atur manual setelah upload.
       </div>
     </div>
 
-    <button class="btn danger" id="logoutBtn">Keluar</button>
+    <button class="btn danger" id="logoutBtn" style="margin-top: 16px;">Keluar</button>
   </div>
 </div>
 
@@ -629,34 +702,51 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 </div>
 
 <script>
-// ============================================================
-// KONFIGURASI
-// ============================================================
+// ============ KONFIG ============
 const SUPABASE_URL = 'https://tjoyzlgdkhkhiggmealh.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb3l6bGdka2hraGlnZ21lYWxoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyOTA2MTMsImV4cCI6MjEwNjg2NjYxM30.72127lDKmBDDB0vE-zgB2BLllCRZns1kb8x4zMkzMi0';
 const ADMIN_PIN = '1234';
 const ADMIN_EMAIL = 'ainun.muh@gmail.com';
 const ADMIN_PASSWORD = '111111';
 const TABLE = 'aroma';
-// ============================================================
+// ============
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const $ = id => document.getElementById(id);
 
+// ============ STATE ============
 let aromas = [];
+let aromasById = {};
 let tokens = [];
 let currentDetail = null;
 let favorites = JSON.parse(localStorage.getItem('scentia_favs') || '[]');
+let favoritesSet = new Set(favorites);
 let showOnlyFavs = false;
 let viewMode = localStorage.getItem('scentia_view') || 'grid';
 let adminLoggedIn = false;
+let selectedIds = new Set();
+
+// Admin pagination
+const ADMIN_PAGE_SIZE = 30;
+let adminPageCount = 1;
+let adminFiltered = [];
+
+// Realtime guard: skip reload for 1.5s after local operation
+let localOpUntil = 0;
+function markLocalOp() { localOpUntil = Date.now() + 1500; }
+
+// Debounce helpers
+let searchDebounceTimer;
+let adminSearchDebounceTimer;
+let realtimeDebounceTimer;
 
 const filters = {
   gender: '', occasion: '', waktu: '', musim: '',
   main_accords: '', konsentrasi: '', longevity: '', sillage: '',
 };
 
+// ============ UTILS ============
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -674,7 +764,9 @@ function highlight(text, toks) {
 function tagsOf(val) { if (!val) return []; return String(val).split(',').map(s => s.trim()).filter(Boolean); }
 function hasTag(fieldVal, tag) { if (!tag) return true; return tagsOf(fieldVal).some(t => t.toLowerCase() === tag.toLowerCase()); }
 function countTags(field) {
-  const map = {}; aromas.forEach(a => tagsOf(a[field]).forEach(t => { map[t] = (map[t] || 0) + 1; })); return map;
+  const map = {};
+  for (const a of aromas) tagsOf(a[field]).forEach(t => { map[t] = (map[t] || 0) + 1; });
+  return map;
 }
 function isTruthy(v) {
   const s = String(v ?? '').trim().toLowerCase();
@@ -684,25 +776,32 @@ function toast(msg) {
   const el = document.createElement('div');
   el.className = 'toast'; el.textContent = msg;
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 2500);
+  setTimeout(() => el.remove(), 2400);
 }
 
+// ============ LOAD ============
 async function loadAromas() {
   const { data, error } = await db.from(TABLE).select('*');
-  if (error) { console.error(error); $('count').textContent = 'Gagal memuat data.'; return; }
+  if (error) { console.error(error); $('count').textContent = 'Gagal memuat.'; return; }
   aromas = data || [];
+  aromasById = {};
+  aromas.forEach(a => { aromasById[a.id] = a; });
+  selectedIds = new Set([...selectedIds].filter(id => aromasById[id]));
   buildAdvancedChips();
   renderNewSection();
   applyFilters();
   updateStats();
-  if (adminLoggedIn) renderAdminList();
+  if (adminLoggedIn && $('adminModal').classList.contains('open')) renderAdminList();
 }
+
 function updateStats() {
   $('statTotal').textContent = aromas.length;
   $('statNew').textContent = aromas.filter(a => a.is_new).length;
-  $('statKategori').textContent = Object.keys(countTags('main_accords')).length;
+  $('statSelected').textContent = selectedIds.size;
+  updateBulkBar();
 }
 
+// ============ FILTER CHIPS ============
 const ADV_GROUPS = [
   { field: 'gender',       el: 'chipsGender',      grp: 'fgGender', preferred: ['Unisex','Pria','Wanita'] },
   { field: 'occasion',     el: 'chipsOccasion',    grp: 'fgOccasion', preferred: ['Kerja','Santai','Tidur','Kencan','Formal','Olahraga','Hadiah'] },
@@ -728,12 +827,12 @@ function buildAdvancedChips() {
       if (ai !== -1) return -1; if (bi !== -1) return 1;
       return a.localeCompare(b, 'id');
     });
-    container.innerHTML = '';
+    const frag = document.createDocumentFragment();
     const allBtn = document.createElement('button');
     allBtn.className = 'chip' + (filters[g.field] === '' ? ' active' : '');
     allBtn.textContent = 'Semua';
     allBtn.onclick = () => { filters[g.field] = ''; buildAdvancedChips(); applyFilters(); };
-    container.appendChild(allBtn);
+    frag.appendChild(allBtn);
     keys.forEach(k => {
       const b = document.createElement('button');
       b.className = 'chip' + (filters[g.field].toLowerCase() === k.toLowerCase() ? ' active' : '');
@@ -742,39 +841,45 @@ function buildAdvancedChips() {
         filters[g.field] = filters[g.field].toLowerCase() === k.toLowerCase() ? '' : k;
         buildAdvancedChips(); applyFilters();
       };
-      container.appendChild(b);
+      frag.appendChild(b);
     });
+    container.replaceChildren(frag);
   });
   updateFilterBadge();
 }
 function updateFilterBadge() {
   const n = Object.keys(filters).filter(f => filters[f]).length;
   const btn = $('filterToggle');
-  const existing = btn.querySelector('.badge');
-  if (existing) existing.remove();
+  let badge = btn.querySelector('.badge');
   if (n > 0) {
-    const badge = document.createElement('span');
-    badge.className = 'badge'; badge.textContent = n;
-    btn.insertBefore(badge, btn.querySelector('.chev'));
-  }
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'badge';
+      btn.insertBefore(badge, btn.querySelector('.chev'));
+    }
+    badge.textContent = n;
+  } else if (badge) badge.remove();
 }
 
+// ============ NEW SECTION ============
 function renderNewSection() {
   const newItems = aromas.filter(a => a.is_new)
     .sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
-    .slice(0, 12);
+    .slice(0, 10);
   const section = $('newSection');
   if (!newItems.length) { section.classList.remove('visible'); return; }
   section.classList.add('visible');
-  $('newCount').textContent = newItems.length + ' item baru';
-  $('newGrid').innerHTML = '';
-  newItems.forEach(a => $('newGrid').appendChild(createCard(a)));
+  $('newCount').textContent = newItems.length + ' item';
+  const frag = document.createDocumentFragment();
+  newItems.forEach(a => frag.appendChild(createCard(a)));
+  $('newGrid').replaceChildren(frag);
 }
 
+// ============ CARD ============
 function createCard(a, idx) {
   const card = document.createElement('div');
   card.className = 'card' + (a.is_new ? ' is-new' : '');
-  const fav = favorites.includes(a.id);
+  const fav = favoritesSet.has(a.id);
   const badges = [];
   if (a.is_new) badges.push(`<span class="badge new">BARU</span>`);
   const noLabel = a.nomor ? String(a.nomor).padStart(2, '0') : (idx !== undefined ? String(idx + 1).padStart(2, '0') : '');
@@ -820,34 +925,43 @@ function createCard(a, idx) {
 }
 
 function toggleFav(id) {
-  const idx = favorites.indexOf(id);
-  if (idx === -1) { favorites.push(id); toast('Ditambahkan ke favorit ⭐'); }
-  else { favorites.splice(idx, 1); toast('Dihapus dari favorit'); }
+  if (favoritesSet.has(id)) {
+    favoritesSet.delete(id);
+    toast('Dihapus dari favorit');
+  } else {
+    favoritesSet.add(id);
+    toast('Ditambahkan ke favorit ⭐');
+  }
+  favorites = [...favoritesSet];
   localStorage.setItem('scentia_favs', JSON.stringify(favorites));
-  applyFilters(); renderNewSection();
+  applyFilters();
 }
 
+// ============ FILTER + RENDER ============
 function applyFilters() {
   const q = $('searchInput').value.toLowerCase().trim();
   tokens = q ? q.split(/\s+/).filter(Boolean) : [];
-  const filtered = aromas.filter(a => {
-    if (showOnlyFavs && !favorites.includes(a.id)) return false;
-    if (!hasTag(a.occasion, filters.occasion)) return false;
-    if (!hasTag(a.main_accords, filters.main_accords)) return false;
-    if (!hasTag(a.musim, filters.musim)) return false;
-    if (filters.gender && (a.gender || '').toLowerCase() !== filters.gender.toLowerCase()) return false;
-    if (filters.waktu && (a.waktu || '').toLowerCase() !== filters.waktu.toLowerCase()) return false;
-    if (filters.konsentrasi && (a.konsentrasi || '').toLowerCase() !== filters.konsentrasi.toLowerCase()) return false;
-    if (filters.longevity && (a.longevity || '').toLowerCase() !== filters.longevity.toLowerCase()) return false;
-    if (filters.sillage && (a.sillage || '').toLowerCase() !== filters.sillage.toLowerCase()) return false;
+  const filtered = [];
+  for (const a of aromas) {
+    if (showOnlyFavs && !favoritesSet.has(a.id)) continue;
+    if (!hasTag(a.occasion, filters.occasion)) continue;
+    if (!hasTag(a.main_accords, filters.main_accords)) continue;
+    if (!hasTag(a.musim, filters.musim)) continue;
+    if (filters.gender && (a.gender || '').toLowerCase() !== filters.gender.toLowerCase()) continue;
+    if (filters.waktu && (a.waktu || '').toLowerCase() !== filters.waktu.toLowerCase()) continue;
+    if (filters.konsentrasi && (a.konsentrasi || '').toLowerCase() !== filters.konsentrasi.toLowerCase()) continue;
+    if (filters.longevity && (a.longevity || '').toLowerCase() !== filters.longevity.toLowerCase()) continue;
+    if (filters.sillage && (a.sillage || '').toLowerCase() !== filters.sillage.toLowerCase()) continue;
     if (tokens.length) {
-      const hay = [a.nama, a.nama_asli, a.brand_asli, a.top_notes, a.middle_notes, a.base_notes,
+      const hay = (a._hay || (a._hay = [a.nama, a.nama_asli, a.brand_asli, a.top_notes, a.middle_notes, a.base_notes,
         a.main_accords, a.gender, a.waktu, a.musim, a.occasion, a.deskripsi, a.cocok_untuk,
-        a.kata_kunci, a.konsentrasi, a.longevity, a.sillage].filter(Boolean).join(' ').toLowerCase();
-      return tokens.every(t => hay.includes(t));
+        a.kata_kunci, a.konsentrasi, a.longevity, a.sillage].filter(Boolean).join(' ').toLowerCase()));
+      let ok = true;
+      for (const t of tokens) { if (!hay.includes(t)) { ok = false; break; } }
+      if (!ok) continue;
     }
-    return true;
-  });
+    filtered.push(a);
+  }
   const mode = $('sortSelect').value;
   filtered.sort((a, b) => {
     if (mode === 'nomor') {
@@ -870,20 +984,21 @@ function applyFilters() {
 
 function render(list) {
   const favNote = showOnlyFavs ? ' favorit' : '';
-  $('count').innerHTML = `<b>${list.length}</b> aroma${favNote} ditemukan${aromas.length && !showOnlyFavs ? ` dari ${aromas.length}` : ''}`;
-  $('grid').innerHTML = '';
+  $('count').innerHTML = `<b>${list.length}</b> aroma${favNote}${aromas.length && !showOnlyFavs ? ` dari ${aromas.length}` : ''}`;
   $('grid').className = 'grid' + (viewMode === 'list' ? ' list' : '');
   $('noResults').classList.add('hidden');
   if (!list.length) {
+    $('grid').replaceChildren();
     $('noResults').classList.remove('hidden');
     $('noResults').innerHTML = showOnlyFavs
       ? `<span class="emoji">⭐</span>Belum ada aroma favorit.`
-      : aromas.length
-        ? `<span class="emoji">🔍</span>Tidak ada aroma yang cocok.`
+      : aromas.length ? `<span class="emoji">🔍</span>Tidak ada aroma yang cocok.`
         : `<span class="emoji">📭</span>Belum ada data aroma.`;
     return;
   }
-  list.forEach((a, idx) => $('grid').appendChild(createCard(a, idx)));
+  const frag = document.createDocumentFragment();
+  list.forEach((a, idx) => frag.appendChild(createCard(a, idx)));
+  $('grid').replaceChildren(frag);
 }
 
 function updateResetBtn() {
@@ -891,6 +1006,7 @@ function updateResetBtn() {
   $('resetFilters').classList.toggle('hidden', !anyFilter);
 }
 
+// ============ DETAIL ============
 function openDetail(a) {
   currentDetail = a;
   $('detailTitle').textContent = '';
@@ -917,7 +1033,7 @@ function openDetail(a) {
     ? `<div class="detail-grid">${detailItems.map(i =>
         `<div class="detail-item"><div class="k">${i.k}</div><div class="v">${escapeHtml(i.v)}</div></div>`).join('')}</div>` : '';
   const occasionBadges = tagsOf(a.occasion).map(t => `<span class="badge occasion">${escapeHtml(t)}</span>`).join(' ');
-  const isFav = favorites.includes(a.id);
+  const isFav = favoritesSet.has(a.id);
   body.innerHTML = `
     <div class="detail-hero">
       <div class="badges">${badges.join('')}</div>
@@ -925,14 +1041,14 @@ function openDetail(a) {
       ${(a.nama_asli || a.brand_asli) ? `<div class="origin">Klon dari <b>${escapeHtml(a.nama_asli || '-')}</b>${a.brand_asli ? ' · ' + escapeHtml(a.brand_asli) : ''}</div>` : ''}
     </div>
     ${notesHtml ? `<div class="detail-section"><h4>Piramida Notes</h4>${notesHtml}</div>` : ''}
-    ${detailHtml ? `<div class="detail-section"><h4>Detail Aroma</h4>${detailHtml}</div>` : ''}
+    ${detailHtml ? `<div class="detail-section"><h4>Detail</h4>${detailHtml}</div>` : ''}
     ${occasionBadges ? `<div class="detail-section"><h4>Occasion</h4><div class="chips">${occasionBadges}</div></div>` : ''}
     ${a.deskripsi ? `<div class="detail-section"><h4>Deskripsi</h4><p class="detail-desc">${escapeHtml(a.deskripsi)}</p></div>` : ''}
     ${a.cocok_untuk ? `<div class="detail-section"><h4>Cocok Untuk</h4><p class="detail-desc">${escapeHtml(a.cocok_untuk)}</p></div>` : ''}
     <div class="detail-actions">
-      <button class="btn ${isFav ? 'primary' : ''}" id="detailFavBtn">${isFav ? '★ Tersimpan' : '☆ Simpan Favorit'}</button>
+      <button class="btn ${isFav ? 'primary' : ''}" id="detailFavBtn">${isFav ? '★ Tersimpan' : '☆ Favorit'}</button>
       <button class="btn wa" id="detailWaBtn">↗ WhatsApp</button>
-      <button class="btn" id="detailCopyBtn">🔗 Copy Link</button>
+      <button class="btn" id="detailCopyBtn">🔗 Copy</button>
     </div>
   `;
   $('detailFavBtn').onclick = () => { toggleFav(a.id); openDetail(a); };
@@ -943,14 +1059,19 @@ function openDetail(a) {
   $('detailCopyBtn').onclick = async () => {
     const url = location.href.split('#')[0] + '#aroma-' + a.id;
     try { await navigator.clipboard.writeText(url); toast('Link disalin'); }
-    catch { toast('Gagal menyalin'); }
+    catch { toast('Gagal salin'); }
   };
   openModal('detailModal');
 }
 
 // ============ EVENTS ============
-$('searchInput').addEventListener('input', applyFilters);
-$('clearX').addEventListener('click', () => { $('searchInput').value = ''; applyFilters(); $('searchInput').focus(); });
+$('searchInput').addEventListener('input', () => {
+  clearTimeout(searchDebounceTimer);
+  searchDebounceTimer = setTimeout(applyFilters, 120);
+});
+$('clearX').addEventListener('click', () => {
+  $('searchInput').value = ''; applyFilters(); $('searchInput').focus();
+});
 $('sortSelect').addEventListener('change', applyFilters);
 $('resetFilters').addEventListener('click', () => {
   Object.keys(filters).forEach(k => filters[k] = '');
@@ -982,7 +1103,7 @@ function updateViewIcon() {
   }
 }
 
-// ============ MODAL HELPERS ============
+// ============ MODAL ============
 $('adminTrigger').addEventListener('click', () => openModal('pinModal'));
 document.querySelectorAll('[data-close]').forEach(btn => {
   btn.addEventListener('click', () => closeModal(btn.dataset.close));
@@ -993,8 +1114,14 @@ document.querySelectorAll('.modal').forEach(m => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(m => closeModal(m.id));
 });
-function openModal(id) { $(id).classList.add('open'); }
-function closeModal(id) { $(id).classList.remove('open'); }
+function openModal(id) {
+  $(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  $(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 // ============ ADMIN LOGIN ============
 $('pinSubmit').addEventListener('click', async () => {
@@ -1016,93 +1143,255 @@ $('pinInput').addEventListener('keypress', e => { if (e.key === 'Enter') $('pinS
 $('logoutBtn').addEventListener('click', async () => {
   await db.auth.signOut();
   adminLoggedIn = false;
+  selectedIds.clear();
   closeModal('adminModal');
 });
 
-// ============ ADMIN LIST — KELOLA AROMA BARU ============
+// ============ ADMIN TABS ============
+document.querySelectorAll('.admin-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.add('hidden'));
+    tab.classList.add('active');
+    document.querySelector(`[data-panel="${tab.dataset.tab}"]`).classList.remove('hidden');
+  });
+});
+
+// ============ ADMIN LIST — EVENT DELEGATION ============
+function getFilteredAdminAromas() {
+  const q = ($('adminSearch').value || '').toLowerCase().trim();
+  if (!q) return aromas;
+  return aromas.filter(a =>
+    (a.nama || '').toLowerCase().includes(q) ||
+    (a.nama_asli || '').toLowerCase().includes(q) ||
+    (a.brand_asli || '').toLowerCase().includes(q)
+  );
+}
+
 function renderAdminList() {
   const container = $('adminAromaList');
   if (!container) return;
-  const q = ($('adminSearch').value || '').toLowerCase().trim();
-  const filtered = aromas.filter(a => {
-    if (!q) return true;
-    return (a.nama || '').toLowerCase().includes(q) ||
-           (a.nama_asli || '').toLowerCase().includes(q) ||
-           (a.brand_asli || '').toLowerCase().includes(q);
-  });
+  adminFiltered = getFilteredAdminAromas();
 
-  if (!filtered.length) {
+  if (!adminFiltered.length) {
     container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--muted); font-size: 12px;">' +
-      (aromas.length ? 'Tidak ada aroma yang cocok.' : 'Belum ada data aroma. Upload dulu.') + '</div>';
+      (aromas.length ? 'Tidak ada aroma yang cocok.' : 'Belum ada data aroma.') + '</div>';
+    $('selectAllChk').checked = false;
+    $('selectAllChk').disabled = true;
+    $('loadMoreBtn').classList.add('hidden');
+    updateBulkBar();
     return;
   }
 
-  container.innerHTML = '';
-  filtered.forEach(a => {
-    const row = document.createElement('div');
-    row.className = 'admin-aroma-row';
-    const metaParts = [];
-    if (a.nama_asli) metaParts.push(a.nama_asli);
-    if (a.brand_asli) metaParts.push(a.brand_asli);
-    row.innerHTML = `
-      <div class="info">
-        <div class="name">${escapeHtml(a.nama)}</div>
-        ${metaParts.length ? `<div class="meta">${escapeHtml(metaParts.join(' · '))}</div>` : ''}
-      </div>
-      <div class="actions">
-        <label class="toggle" title="${a.is_new ? 'Klik untuk hapus tanda Baru' : 'Klik untuk tandai Baru'}">
-          <input type="checkbox" ${a.is_new ? 'checked' : ''}>
-          <span class="slider"></span>
-        </label>
-        <button class="admin-delete-btn" title="Hapus aroma">🗑</button>
-      </div>
-    `;
-    const toggle = row.querySelector('input[type=checkbox]');
-    toggle.addEventListener('change', async (e) => {
-      const isNew = e.target.checked;
-      const { error } = await db.from(TABLE).update({ is_new: isNew }).eq('id', a.id);
-      if (error) {
-        toast('Gagal update: ' + error.message);
-        e.target.checked = !isNew;
-        return;
-      }
-      a.is_new = isNew;
-      updateStats();
-      renderNewSection();
-      applyFilters();
-      toast(isNew ? `"${a.nama}" ditandai BARU ✓` : `Tanda Baru "${a.nama}" dihapus`);
-    });
-    const delBtn = row.querySelector('.admin-delete-btn');
-    delBtn.addEventListener('click', async () => {
-      if (!confirm(`Hapus "${a.nama}" dari database?\n\nTindakan ini tidak bisa dibatalkan.`)) return;
-      const { error } = await db.from(TABLE).delete().eq('id', a.id);
-      if (error) { toast('Gagal hapus: ' + error.message); return; }
-      toast(`"${a.nama}" dihapus`);
-      await loadAromas();
-    });
-    container.appendChild(row);
-  });
+  const total = adminFiltered.length;
+  const shown = Math.min(adminPageCount * ADMIN_PAGE_SIZE, total);
+  const slice = adminFiltered.slice(0, shown);
+
+  const frag = document.createDocumentFragment();
+  slice.forEach(a => frag.appendChild(buildAdminRow(a)));
+  container.replaceChildren(frag);
+
+  $('loadMoreBtn').classList.toggle('hidden', shown >= total);
+  $('loadMoreBtn').textContent = `Muat lebih banyak (${shown}/${total}) ↓`;
+
+  updateSelectAllState();
+  updateBulkBar();
 }
 
-$('adminSearch').addEventListener('input', renderAdminList);
+function buildAdminRow(a) {
+  const row = document.createElement('div');
+  row.className = 'admin-aroma-row' + (selectedIds.has(a.id) ? ' selected' : '');
+  row.dataset.id = a.id;
+  const metaParts = [];
+  if (a.nama_asli) metaParts.push(a.nama_asli);
+  if (a.brand_asli) metaParts.push(a.brand_asli);
+  row.innerHTML = `
+    <input type="checkbox" class="row-select" ${selectedIds.has(a.id) ? 'checked' : ''}>
+    <div class="info">
+      <div class="name">${escapeHtml(a.nama)}${a.is_new ? ' <span class="new-dot">● BARU</span>' : ''}</div>
+      ${metaParts.length ? `<div class="meta">${escapeHtml(metaParts.join(' · '))}</div>` : ''}
+    </div>
+    <div class="actions">
+      <label class="toggle" title="${a.is_new ? 'Hapus tanda Baru' : 'Tandai Baru'}">
+        <input type="checkbox" class="is-new-toggle" ${a.is_new ? 'checked' : ''}>
+        <span class="slider"></span>
+      </label>
+      <button class="admin-delete-btn" title="Hapus">🗑</button>
+    </div>
+  `;
+  return row;
+}
 
+// Event delegation — 1 listener for whole list
+$('adminAromaList').addEventListener('change', (e) => {
+  const row = e.target.closest('.admin-aroma-row');
+  if (!row) return;
+  const id = parseInt(row.dataset.id);
+  const a = aromasById[id];
+  if (!a) return;
+
+  if (e.target.classList.contains('row-select')) {
+    if (e.target.checked) selectedIds.add(id);
+    else selectedIds.delete(id);
+    row.classList.toggle('selected', e.target.checked);
+    updateBulkBar();
+    updateSelectAllState();
+    updateStats();
+  } else if (e.target.classList.contains('is-new-toggle')) {
+    toggleIsNewOptimistic(a, e.target.checked, e.target);
+  }
+});
+
+$('adminAromaList').addEventListener('click', (e) => {
+  const delBtn = e.target.closest('.admin-delete-btn');
+  if (!delBtn) return;
+  const row = delBtn.closest('.admin-aroma-row');
+  if (!row) return;
+  const id = parseInt(row.dataset.id);
+  const a = aromasById[id];
+  if (!a) return;
+  deleteSingle(a);
+});
+
+// ============ OPTIMISTIC TOGGLE ============
+async function toggleIsNewOptimistic(a, isNew, inputEl) {
+  const prev = a.is_new;
+  a.is_new = isNew;
+  markLocalOp();
+  // Update UI instantly
+  renderNewSection();
+  updateStats();
+  // Update just this row's label (no full re-render)
+  const row = document.querySelector(`.admin-aroma-row[data-id="${a.id}"]`);
+  if (row) {
+    const nameEl = row.querySelector('.name');
+    if (nameEl) {
+      nameEl.innerHTML = escapeHtml(a.nama) + (isNew ? ' <span class="new-dot">● BARU</span>' : '');
+    }
+  }
+  // Send to server
+  const { error } = await db.from(TABLE).update({ is_new: isNew }).eq('id', a.id);
+  if (error) {
+    a.is_new = prev;
+    if (inputEl) inputEl.checked = prev;
+    renderNewSection();
+    updateStats();
+    toast('Gagal update');
+    return;
+  }
+  toast(isNew ? `"${a.nama}" ditandai BARU ✓` : `Tanda Baru "${a.nama}" dihapus`);
+}
+
+// ============ OPTIMISTIC DELETE ============
+async function deleteSingle(a) {
+  if (!confirm(`Hapus aroma "${a.nama}"?\n\n⚠️ Permanen dan tidak bisa dikembalikan.`)) return;
+  const idx = aromas.findIndex(x => x.id === a.id);
+  if (idx === -1) return;
+  const backup = aromas.slice();
+  aromas.splice(idx, 1);
+  delete aromasById[a.id];
+  selectedIds.delete(a.id);
+  markLocalOp();
+  // Update UI instantly
+  renderNewSection(); applyFilters(); updateStats();
+  renderAdminList();
+  toast(`"${a.nama}" dihapus`);
+  // Send to server
+  const { error } = await db.from(TABLE).delete().eq('id', a.id);
+  if (error) {
+    aromas = backup;
+    aromasById = {};
+    aromas.forEach(x => { aromasById[x.id] = x; });
+    renderNewSection(); applyFilters(); updateStats(); renderAdminList();
+    toast('Gagal hapus — data dikembalikan');
+  }
+}
+
+// ============ ADMIN SEARCH — DEBOUNCED ============
+$('adminSearch').addEventListener('input', () => {
+  clearTimeout(adminSearchDebounceTimer);
+  adminSearchDebounceTimer = setTimeout(() => {
+    adminPageCount = 1;
+    renderAdminList();
+  }, 250);
+});
+
+$('loadMoreBtn').addEventListener('click', () => {
+  adminPageCount++;
+  renderAdminList();
+});
+
+$('selectAllChk').addEventListener('change', (e) => {
+  if (e.target.checked) adminFiltered.forEach(a => selectedIds.add(a.id));
+  else adminFiltered.forEach(a => selectedIds.delete(a.id));
+  renderAdminList();
+});
+
+function updateSelectAllState() {
+  const chk = $('selectAllChk');
+  chk.disabled = !adminFiltered.length;
+  const allSelected = adminFiltered.length > 0 && adminFiltered.every(a => selectedIds.has(a.id));
+  const someSelected = adminFiltered.some(a => selectedIds.has(a.id));
+  chk.checked = allSelected;
+  chk.indeterminate = someSelected && !allSelected;
+}
+
+function updateBulkBar() {
+  const n = selectedIds.size;
+  $('selectedCount').textContent = n;
+  $('statSelected').textContent = n;
+  $('bulkDeleteBtn').classList.toggle('hidden', n === 0);
+}
+
+// ============ BULK DELETE ============
+$('bulkDeleteBtn').addEventListener('click', async () => {
+  const ids = [...selectedIds];
+  if (!ids.length) return;
+  const names = ids.map(id => `• ${aromasById[id]?.nama || '?'}`).slice(0, 6).join('\n');
+  const more = ids.length > 6 ? `\n... dan ${ids.length - 6} lainnya` : '';
+  if (!confirm(`Hapus ${ids.length} aroma?\n\n${names}${more}\n\n⚠️ Permanen.`)) return;
+  const backup = aromas.slice();
+  const idsSet = new Set(ids);
+  aromas = aromas.filter(a => !idsSet.has(a.id));
+  aromas.forEach(a => { aromasById[a.id] = a; });
+  ids.forEach(id => { delete aromasById[id]; selectedIds.delete(id); });
+  markLocalOp();
+  renderNewSection(); applyFilters(); updateStats(); renderAdminList();
+  toast(`${ids.length} aroma dihapus`);
+  const { error } = await db.from(TABLE).delete().in('id', ids);
+  if (error) {
+    aromas = backup;
+    aromasById = {};
+    aromas.forEach(x => { aromasById[x.id] = x; });
+    renderNewSection(); applyFilters(); updateStats(); renderAdminList();
+    toast('Gagal hapus — data dikembalikan');
+  }
+});
+
+// ============ BULK MARK / CLEAR ============
 $('markAllBtn').addEventListener('click', async () => {
   if (!aromas.length) { toast('Belum ada data'); return; }
   if (!confirm(`Tandai SEMUA ${aromas.length} aroma sebagai BARU?`)) return;
+  aromas.forEach(a => { a.is_new = true; });
+  markLocalOp();
+  renderNewSection(); updateStats();
+  if ($('adminModal').classList.contains('open')) renderAdminList();
+  toast(`Semua aroma ditandai BARU`);
   const { error } = await db.from(TABLE).update({ is_new: true }).neq('id', 0);
-  if (error) { toast('Gagal: ' + error.message); return; }
-  toast(`Semua ${aromas.length} aroma ditandai BARU`);
-  await loadAromas();
+  if (error) { toast('Gagal'); await loadAromas(); }
 });
 
 $('clearAllBtn').addEventListener('click', async () => {
   const count = aromas.filter(a => a.is_new).length;
   if (!count) { toast('Tidak ada aroma bertanda baru'); return; }
-  if (!confirm(`Hapus tanda "Baru" dari ${count} aroma?`)) return;
+  if (!confirm(`Hapus tanda Baru dari ${count} aroma?`)) return;
+  aromas.forEach(a => { a.is_new = false; });
+  markLocalOp();
+  renderNewSection(); updateStats();
+  if ($('adminModal').classList.contains('open')) renderAdminList();
+  toast(`Tanda Baru dihapus`);
   const { error } = await db.from(TABLE).update({ is_new: false }).neq('id', 0);
-  if (error) { toast('Gagal: ' + error.message); return; }
-  toast(`Tanda Baru dihapus dari ${count} aroma`);
-  await loadAromas();
+  if (error) { toast('Gagal'); await loadAromas(); }
 });
 
 // ============ TEMPLATE ============
@@ -1120,13 +1409,10 @@ $('templateBtn').addEventListener('click', () => {
      'Wangi bunga lavender yang menenangkan.','Relaksasi, tidur','tenang, tidur, bunga','Ya'],
     [2,'Oud Royale','Oud Satin Mood','Maison Francis Kurkdjian','Saffron, Bergamot','Rose, Patchouli','Oud, Amber, Musk',
      'Long Lasting','Strong','EDP','Woody, Oriental','Unisex','Malam','Fall, Winter','Formal, Kencan',
-     'Aroma oud yang dalam dan eksotis.','Formal, malam hari','oud, mewah, eksotis','Ya'],
+     'Aroma oud yang dalam dan eksotis.','Formal, malam','oud, mewah, eksotis','Ya'],
     [3,'Bergamot Fresh','Acqua di Gio','Giorgio Armani','Bergamot, Lemon','Neroli, Green Tea','White Musk, Cedar',
      'Ringan','Moderate','EDC','Citrus, Fresh','Pria','Siang','Spring, Summer','Kerja, Olahraga',
      'Aroma jeruk segar membangkitkan semangat.','Siang, olahraga','jeruk, segar, energi','Tidak'],
-    [4,'Vanilla Kiss','Good Girl','Carolina Herrera','Vanilla, Pear','Tonka Bean, Jasmine','Vanilla, Sandalwood, Musk',
-     'Long Lasting','Moderate','EDP','Gourmand, Sweet','Wanita','Malam','Fall, Winter','Kencan, Hadiah',
-     'Aroma vanilla manis dan hangat.','Kencan, hadiah','manis, hangat, vanilla','Tidak'],
   ];
   const ws = XLSX.utils.aoa_to_sheet([headers, ...samples]);
   ws['!cols'] = [
@@ -1155,7 +1441,7 @@ $('fileInput').addEventListener('change', async (e) => {
     const str = v => String(v ?? '').trim() || null;
     const num = v => { if (v === '' || v == null) return null; const n = parseInt(v); return isNaN(n) ? null : n; };
     const payload = rows.map(r => ({
-      nomor: num(r['No'] ?? r['no'] ?? r['Nomor']),
+      nomor: num(r['No']),
       nama: str(r['Nama Aroma (Clone)'] ?? r['Nama Aroma'] ?? r['Nama']),
       nama_asli: str(r['Nama Parfum Asli'] ?? r['Nama Asli']),
       brand_asli: str(r['Brand Asli'] ?? r['Brand']),
@@ -1173,21 +1459,22 @@ $('fileInput').addEventListener('change', async (e) => {
       deskripsi: str(r['Deskripsi']),
       cocok_untuk: str(r['Cocok Untuk']),
       kata_kunci: str(r['Kata Kunci']),
-      is_new: isTruthy(r['Aroma Baru'] ?? r['Baru'] ?? r['is_new']),
+      is_new: isTruthy(r['Aroma Baru']),
     })).filter(r => r.nama);
     if (!payload.length) { msg('err', 'Tidak ada data valid.'); return; }
     if ($('replaceMode').checked) {
       if (!confirm(`Hapus SEMUA data dan ganti dengan ${payload.length} baris?`)) return;
       msg('info', 'Menghapus data lama...');
       const { error: delErr } = await db.from(TABLE).delete().gt('id', 0);
-      if (delErr) throw new Error('Gagal hapus: ' + delErr.message);
+      if (delErr) throw new Error('Gagal hapus lama: ' + delErr.message);
     }
     msg('info', `Menyimpan ${payload.length} aroma...`);
     const { error } = await db.from(TABLE).insert(payload);
     if (error) throw new Error('Gagal simpan: ' + error.message);
     const newCount = payload.filter(p => p.is_new).length;
-    msg('ok', `✅ ${payload.length} aroma diupload${newCount ? ` (${newCount} bertanda BARU)` : ''}.`);
+    msg('ok', `✅ ${payload.length} aroma diupload${newCount ? ` (${newCount} BARU)` : ''}.`);
     $('replaceMode').checked = false;
+    markLocalOp();
     await loadAromas();
   } catch (err) {
     console.error(err);
@@ -1195,10 +1482,14 @@ $('fileInput').addEventListener('change', async (e) => {
   }
 });
 
-// ============ REALTIME ============
+// ============ REALTIME — DEBOUNCED ============
 function subscribeRealtime() {
   db.channel('aroma-live')
-    .on('postgres_changes', { event: '*', schema: 'public', table: TABLE }, () => loadAromas())
+    .on('postgres_changes', { type: 'postgres_changes', event: '*', schema: 'public', table: TABLE }, () => {
+      if (Date.now() < localOpUntil) return;
+      clearTimeout(realtimeDebounceTimer);
+      realtimeDebounceTimer = setTimeout(() => loadAromas(), 400);
+    })
     .subscribe();
 }
 
