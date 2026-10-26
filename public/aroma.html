@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Aroma — King Parfum Indonesia | Scentia Ultimacos</title>
-<meta name="description" content="Jelajahi koleksi aroma King Parfum Indonesia. Filter berdasarkan gender, waktu pakai, karakter aroma, ketahanan, dan occasion.">
+<meta name="description" content="Jelajahi koleksi aroma King Parfum Indonesia.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#B08D4F">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -21,22 +21,13 @@
 <style>
 * { box-sizing: border-box; }
 :root {
-  --gold: #B08D4F;
-  --gold-dark: #977440;
-  --gold-light: #D4B875;
-  --bg: #FDFCFA;
-  --bg-tint: #F9F4EA;
-  --text: #1C1A17;
-  --muted: #7A7266;
-  --subtle: #5A544A;
-  --border: #E8DFD0;
-  --border-soft: #EBE2D3;
+  --gold: #B08D4F; --gold-dark: #977440; --gold-light: #D4B875; --gold-glow: #F4C057;
+  --bg: #FDFCFA; --bg-tint: #F9F4EA; --text: #1C1A17; --muted: #7A7266;
+  --subtle: #5A544A; --border: #E8DFD0; --border-soft: #EBE2D3; --red: #C94A4A;
 }
 body {
-  margin: 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg); color: var(--text); min-height: 100vh;
-  font-weight: 400; -webkit-font-smoothing: antialiased;
+  margin: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh; font-weight: 400; -webkit-font-smoothing: antialiased;
 }
 ::selection { background: rgba(212, 184, 117, 0.3); }
 
@@ -54,14 +45,8 @@ body {
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
 .brand img { height: 32px; width: auto; display: block; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-name {
-  font-family: 'Playfair Display', serif; font-weight: 600;
-  font-size: 1.05rem; color: var(--text); letter-spacing: -0.01em;
-}
-.brand-sub {
-  font-size: 10px; color: var(--muted); letter-spacing: 0.06em;
-  text-transform: uppercase; font-weight: 500;
-}
+.brand-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+.brand-sub { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
 .top-nav { display: flex; align-items: center; gap: 2px; }
 .top-nav a {
   color: var(--subtle); text-decoration: none; font-size: 13px; font-weight: 500;
@@ -78,23 +63,19 @@ body {
 }
 
 /* HERO */
-.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; text-align: center; }
+.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 12px; text-align: center; }
 .hero h1 {
   font-family: 'Playfair Display', serif; font-weight: 500;
-  font-size: clamp(1.7rem, 3.8vw, 2.5rem); margin: 0 0 10px;
-  letter-spacing: -0.01em; line-height: 1.2;
+  font-size: clamp(1.7rem, 3.8vw, 2.5rem); margin: 0 0 10px; letter-spacing: -0.01em; line-height: 1.2;
 }
 .hero p { color: var(--muted); margin: 0 0 28px; font-size: 15px; font-weight: 300; }
 .hero p em { color: var(--gold); font-style: italic; }
 
-.searchbar { position: relative; margin-bottom: 24px; }
+.searchbar { position: relative; margin-bottom: 16px; }
 .searchbar input {
-  width: 100%; padding: 16px 44px 16px 52px;
-  border: 1px solid var(--border); border-radius: 999px;
-  font-size: 15px; background: #fff; outline: none;
-  transition: border-color .15s, box-shadow .15s;
-  box-shadow: 0 4px 24px rgba(176, 141, 79, 0.06);
-  font-family: inherit; color: var(--text);
+  width: 100%; padding: 16px 44px 16px 52px; border: 1px solid var(--border); border-radius: 999px;
+  font-size: 15px; background: #fff; outline: none; transition: all .15s;
+  box-shadow: 0 4px 24px rgba(176, 141, 79, 0.06); font-family: inherit; color: var(--text);
 }
 .searchbar input::placeholder { color: var(--muted); }
 .searchbar input:focus { border-color: var(--gold); box-shadow: 0 4px 24px rgba(176, 141, 79, 0.15); }
@@ -110,44 +91,31 @@ body {
 }
 .searchbar .clear-x.show { display: flex; }
 
-.quick-label {
-  text-align: left; font-size: 11px; color: var(--muted); margin-bottom: 10px;
-  font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-}
-.quick-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-bottom: 22px; }
-.quick-chip {
-  padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border);
-  background: #fff; color: var(--text); cursor: pointer; font-size: 13px;
-  font-weight: 500; transition: all .15s; display: inline-flex;
-  align-items: center; gap: 6px; font-family: inherit;
-}
-.quick-chip:hover:not(:disabled) { border-color: var(--gold-light); transform: translateY(-1px); }
-.quick-chip.active { background: var(--gold); color: #fff; border-color: var(--gold); }
-.quick-chip:disabled { opacity: 0.4; cursor: not-allowed; }
-.quick-chip .n { font-size: 11px; opacity: 0.65; margin-left: 2px; }
-
-.advanced-toggle {
+.filter-toggle {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   padding: 10px 18px; border-radius: 999px; border: 1px solid var(--border);
   background: #fff; color: var(--muted); font-size: 13px; cursor: pointer;
-  transition: all .15s; margin: 0 auto 20px; font-family: inherit; font-weight: 500;
+  transition: all .15s; margin: 0 auto 16px; font-family: inherit; font-weight: 500;
 }
-.advanced-toggle:hover { border-color: var(--gold); color: var(--gold); }
-.advanced-toggle .badge {
-  background: var(--gold); color: #fff; border-radius: 999px;
-  font-size: 10px; padding: 1px 6px; margin-left: 4px; font-weight: 600;
-}
-.advanced-toggle .chev { transition: transform .2s; font-size: 10px; }
-.advanced-toggle.open .chev { transform: rotate(180deg); }
+.filter-toggle:hover { border-color: var(--gold); color: var(--gold); }
+.filter-toggle.open { background: var(--gold); color: #fff; border-color: var(--gold); }
+.filter-toggle .badge { background: var(--gold); color: #fff; border-radius: 999px; font-size: 10px; padding: 1px 6px; margin-left: 4px; font-weight: 600; }
+.filter-toggle.open .badge { background: #fff; color: var(--gold); }
+.filter-toggle .chev { transition: transform .2s; font-size: 10px; }
+.filter-toggle.open .chev { transform: rotate(180deg); }
 
-.advanced-filters { max-height: 0; overflow: hidden; transition: max-height .3s ease; text-align: left; }
-.advanced-filters.open { max-height: 1400px; padding-bottom: 8px; }
+.filters-panel {
+  max-width: 900px; margin: 0 auto; max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s;
+  background: #fff; border-radius: 20px; border: 1px solid transparent; text-align: left;
+}
+.filters-panel.open {
+  max-height: 2000px; padding: 22px 24px; border-color: var(--border-soft);
+  margin-bottom: 20px; box-shadow: 0 4px 24px rgba(176, 141, 79, 0.06);
+}
 .filter-group { margin-bottom: 16px; }
 .filter-group:last-child { margin-bottom: 0; }
-.filter-label {
-  font-size: 10px; font-weight: 600; color: var(--muted);
-  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px;
-}
+.filter-label { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
   padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
@@ -158,6 +126,45 @@ body {
 .chip.active { background: var(--gold); color: #fff; border-color: var(--gold); }
 .chip .n { opacity: .55; margin-left: 3px; font-size: 10px; }
 
+/* NEW SECTION */
+.new-section {
+  max-width: 1200px; margin: 0 auto; padding: 22px 24px;
+  display: none; position: relative;
+  background: linear-gradient(135deg, #FFFCF2 0%, #FFF8E8 100%);
+  border-radius: 24px; box-shadow: inset 0 0 0 1px rgba(212, 184, 117, 0.25);
+  width: calc(100% - 32px);
+}
+.new-section.visible { display: block; }
+.new-section::before {
+  content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-glow), transparent); border-radius: 2px;
+}
+.new-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.new-header h2 {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 1.35rem; margin: 0; letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-glow) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.new-header .sparkle { display: inline-block; animation: rotateSparkle 3s linear infinite; }
+@keyframes rotateSparkle { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.new-header p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.new-count {
+  background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold) 100%);
+  color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px;
+  border-radius: 999px; letter-spacing: 0.03em;
+}
+.new-scroll {
+  display: flex; gap: 14px; overflow-x: auto;
+  padding: 4px 4px 12px; scroll-snap-type: x mandatory;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.new-scroll::-webkit-scrollbar { height: 6px; }
+.new-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+.new-scroll .card { flex: 0 0 280px; scroll-snap-align: start; animation: fadeUp .35s ease-out; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
 /* RESULTS */
 .results { max-width: 1200px; margin: 0 auto; padding: 20px 24px 80px; }
 .results-bar {
@@ -167,87 +174,124 @@ body {
 }
 .count { font-size: 13px; color: var(--muted); }
 .count b { color: var(--text); font-weight: 600; }
-.tools { display: flex; gap: 8px; align-items: center; }
+.tools { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .tools select {
   padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px;
-  font-size: 12px; background: #fff; cursor: pointer; outline: none;
-  color: var(--text); font-family: inherit;
+  font-size: 12px; background: #fff; cursor: pointer; outline: none; color: var(--text); font-family: inherit;
 }
+.icon-btn {
+  padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border); background: #fff;
+  color: var(--subtle); font-size: 12px; cursor: pointer; transition: all .15s; font-family: inherit;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.icon-btn:hover { border-color: var(--gold); color: var(--gold); }
+.icon-btn.active { background: var(--gold); color: #fff; border-color: var(--gold); }
+.icon-btn.active:hover { color: #fff; }
+.icon-btn svg { width: 13px; height: 13px; }
 .btn-reset {
-  padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border);
-  background: #fff; color: var(--muted); font-size: 12px; cursor: pointer;
-  transition: all .15s; font-family: inherit;
+  padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: #fff;
+  color: var(--muted); font-size: 12px; cursor: pointer; transition: all .15s; font-family: inherit;
 }
 .btn-reset:hover { border-color: var(--gold); color: var(--gold); }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
+.grid.list { grid-template-columns: 1fr; }
+.grid.list .card { padding: 14px 18px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.grid.list .card .notes-pyramid, .grid.list .card .desc, .grid.list .card .extra-info { display: none; }
+.grid.list .card .origin { margin-bottom: 0; }
+.grid.list .card .badges { margin-bottom: 4px; }
+
 .card {
   background: #fff; border: 1px solid var(--border-soft); border-radius: 16px;
   padding: 20px; transition: transform .15s, box-shadow .15s;
-  display: flex; flex-direction: column; position: relative;
+  display: flex; flex-direction: column; position: relative; cursor: pointer;
+  overflow: hidden;
 }
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(176, 141, 79, 0.1);
-  border-color: var(--gold-light);
+  transform: translateY(-2px); box-shadow: 0 10px 30px rgba(176, 141, 79, 0.1); border-color: var(--gold-light);
 }
-.badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+
+/* Highlight kuat untuk kartu BARU */
+.card.is-new {
+  border: 1.5px solid var(--gold);
+  background: linear-gradient(160deg, #FFFDF5 0%, #FFF9EC 40%, #fff 100%);
+  box-shadow: 0 6px 20px rgba(176, 141, 79, 0.15), 0 0 0 3px rgba(212, 184, 117, 0.15);
+  animation: newPulse 2.5s ease-in-out infinite;
+}
+@keyframes newPulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(176, 141, 79, 0.15), 0 0 0 3px rgba(212, 184, 117, 0.15); }
+  50%      { box-shadow: 0 8px 28px rgba(176, 141, 79, 0.25), 0 0 0 5px rgba(212, 184, 117, 0.25); }
+}
+.card.is-new::before {
+  content: 'NEW'; position: absolute; top: 14px; right: -34px;
+  background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold-dark) 100%);
+  color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 0.15em;
+  padding: 4px 42px; transform: rotate(45deg);
+  box-shadow: 0 2px 8px rgba(176, 141, 79, 0.4); z-index: 3;
+}
+.card.is-new .fav-btn { z-index: 4; top: 10px; right: 12px; }
+
+.fav-btn {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 30px; height: 30px; border-radius: 50%; border: none; background: transparent;
+  color: #D0C4B5; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .15s; padding: 0;
+}
+.fav-btn:hover { background: rgba(176, 141, 79, 0.1); color: var(--gold); }
+.fav-btn.active { color: var(--gold-glow); }
+.fav-btn svg { width: 18px; height: 18px; }
+
+.badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; padding-right: 30px; }
 .badge {
   font-size: 10px; text-transform: uppercase; letter-spacing: .05em;
   padding: 3px 8px; border-radius: 999px; font-weight: 600;
+}
+.badge.new {
+  background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold) 100%);
+  color: #fff; letter-spacing: .08em; display: inline-flex; align-items: center; gap: 4px;
+}
+.badge.new::before {
+  content: '✨'; font-size: 9px; display: inline-block; animation: sparkle 1.5s ease-in-out infinite;
+}
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50%      { transform: scale(1.3) rotate(20deg); }
 }
 .badge.nomor { background: var(--text); color: #fff; letter-spacing: 0; }
 .badge.accords { background: var(--bg-tint); color: var(--gold-dark); }
 .badge.gender { background: #EEF2F8; color: #4A5F7A; }
 .badge.occasion { background: #FBF2E2; color: #8A6A2C; }
 .badge.waktu { background: #EDF4EE; color: #4A6A4F; }
-.card h3 {
-  font-family: 'Playfair Display', serif; font-weight: 600;
-  margin: 0 0 4px; font-size: 1.15rem; letter-spacing: -0.01em;
-  color: var(--text);
-}
-.origin {
-  font-size: 11px; color: var(--muted); margin: 0 0 10px;
-  font-style: italic; line-height: 1.4;
-}
+.card h3 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 0 0 4px; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--text); }
+.origin { font-size: 11px; color: var(--muted); margin: 0 0 10px; font-style: italic; line-height: 1.4; }
 .origin b { color: var(--gold-dark); font-style: normal; font-weight: 600; }
 .card .desc {
   margin: 0 0 12px; color: var(--subtle); font-size: 13px; line-height: 1.6;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.notes-pyramid {
-  background: var(--bg-tint); border-radius: 10px; padding: 10px 12px;
-  font-size: 11px; color: var(--subtle); line-height: 1.6; margin-bottom: 10px;
-}
+.notes-pyramid { background: var(--bg-tint); border-radius: 10px; padding: 10px 12px; font-size: 11px; color: var(--subtle); line-height: 1.6; margin-bottom: 10px; }
 .notes-pyramid .row { display: flex; gap: 6px; }
-.notes-pyramid .lbl {
-  min-width: 42px; font-weight: 700; color: var(--gold-dark); font-size: 10px;
-  text-transform: uppercase; letter-spacing: .04em;
-}
+.notes-pyramid .lbl { min-width: 42px; font-weight: 700; color: var(--gold-dark); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
 .extra-info {
-  display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px;
-  color: var(--muted); margin-top: auto; padding-top: 10px;
-  border-top: 1px dashed var(--border-soft);
+  display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px; color: var(--muted);
+  margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--border-soft);
 }
 .extra-info span { background: var(--bg-tint); padding: 2px 7px; border-radius: 6px; }
 mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; border-radius: 2px; }
 
-.no-results {
-  text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px;
-  grid-column: 1 / -1;
-}
+.no-results { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; grid-column: 1 / -1; }
 .no-results .emoji { font-size: 32px; display: block; margin-bottom: 12px; }
 
-/* ADMIN */
+/* ADMIN TRIGGER */
 .admin-trigger {
   position: fixed; right: 12px; bottom: 12px; z-index: 40;
-  background: transparent; border: none; color: #C9C2B3;
-  font-size: 11px; cursor: pointer; padding: 6px 10px;
-  border-radius: 8px; transition: all .2s;
+  background: transparent; border: none; color: #C9C2B3; font-size: 11px;
+  cursor: pointer; padding: 6px 10px; border-radius: 8px; transition: all .2s;
   letter-spacing: 0.06em; font-family: inherit; text-transform: uppercase;
 }
 .admin-trigger:hover { color: var(--gold); background: rgba(176, 141, 79, 0.08); }
 
+/* MODAL */
 .modal {
   position: fixed; inset: 0; z-index: 100;
   background: rgba(28, 26, 23, 0.5); backdrop-filter: blur(4px);
@@ -255,38 +299,28 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 }
 .modal.open { display: flex; }
 .modal-content {
-  background: #fff; border-radius: 20px; padding: 26px;
-  width: 100%; max-width: 380px;
+  background: #fff; border-radius: 20px; padding: 26px; width: 100%; max-width: 380px;
+  max-height: 90vh; overflow-y: auto;
   box-shadow: 0 20px 60px rgba(28, 26, 23, 0.25);
   animation: slideIn .2s ease;
 }
-@keyframes slideIn {
-  from { transform: translateY(10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.modal-header {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;
-}
-.modal-header h3 {
-  font-family: 'Playfair Display', serif; font-weight: 600;
-  margin: 0; font-size: 1.15rem;
-}
+.modal-content.wide { max-width: 560px; }
+.modal-content.admin-wide { max-width: 560px; }
+@keyframes slideIn { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.modal-header h3 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 0; font-size: 1.15rem; }
 .modal-close {
   width: 32px; height: 32px; border-radius: 50%; border: none;
   background: var(--bg-tint); color: var(--subtle); cursor: pointer; font-size: 18px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .modal-close:hover { background: var(--border); }
 
 .form-group { margin-bottom: 12px; }
-.form-group label {
-  display: block; font-size: 12px; color: var(--muted);
-  margin-bottom: 6px; font-weight: 500;
-}
+.form-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
 .form-group input {
-  width: 100%; padding: 12px 16px; border: 1px solid var(--border);
-  border-radius: 10px; font-size: 15px; outline: none;
-  font-family: inherit; letter-spacing: 0.1em; color: var(--text);
+  width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px;
+  font-size: 15px; outline: none; font-family: inherit; letter-spacing: 0.1em; color: var(--text);
 }
 .form-group input:focus { border-color: var(--gold); }
 
@@ -295,14 +329,15 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
   padding: 12px 16px; border-radius: 10px; cursor: pointer;
   font-size: 13px; font-weight: 500; transition: all .15s;
   display: inline-flex; align-items: center; justify-content: center;
-  gap: 8px; text-decoration: none; width: 100%; margin-bottom: 8px;
-  font-family: inherit;
+  gap: 8px; text-decoration: none; width: 100%; margin-bottom: 8px; font-family: inherit;
 }
 .btn:hover { border-color: var(--gold); color: var(--gold); }
 .btn.primary { background: var(--gold); color: #fff; border-color: var(--gold); }
-.btn.primary:hover { background: var(--gold-dark); color: #fff; border-color: var(--gold-dark); }
+.btn.primary:hover { background: var(--gold-dark); color: #fff; }
 .btn.danger { color: #B53A3A; }
 .btn.danger:hover { border-color: #B53A3A; background: #FCE4E4; }
+.btn.wa { background: #25D366; color: #fff; border-color: #25D366; }
+.btn.wa:hover { background: #1FB855; color: #fff; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .msg { padding: 10px 14px; border-radius: 10px; font-size: 13px; margin-top: 10px; line-height: 1.5; }
@@ -311,35 +346,129 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 .msg.info { background: #EEF2F8; color: #4A5F7A; }
 
 .admin-note {
-  font-size: 11px; color: var(--muted); line-height: 1.6; margin-top: 14px;
+  font-size: 11px; color: var(--muted); line-height: 1.6; margin-top: 12px;
   padding: 12px; background: var(--bg-tint); border-radius: 10px;
 }
-.admin-note code {
-  background: var(--border); padding: 1px 5px; border-radius: 4px; font-size: 10px;
-  color: var(--text);
-}
-
+.admin-note code { background: var(--border); padding: 1px 5px; border-radius: 4px; font-size: 10px; color: var(--text); }
 .row-check {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px; margin: 8px 0 14px; color: var(--subtle); cursor: pointer;
+  display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 8px 0 14px;
+  color: var(--subtle); cursor: pointer;
 }
 .row-check input { cursor: pointer; accent-color: var(--gold); }
-
 .hidden { display: none !important; }
 
 .admin-stats { display: flex; gap: 8px; margin-bottom: 16px; }
-.stat-box {
-  flex: 1; background: var(--bg-tint); border-radius: 10px; padding: 12px;
-  text-align: center;
+.stat-box { flex: 1; background: var(--bg-tint); border-radius: 10px; padding: 12px; text-align: center; }
+.stat-box .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-dark); }
+.stat-box .lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-top: 2px; }
+
+/* ADMIN SECTIONS */
+.admin-section {
+  margin-bottom: 18px; padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-soft);
 }
-.stat-box .num {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem; font-weight: 600; color: var(--gold-dark);
+.admin-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+.admin-section-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 8px; margin-bottom: 10px; flex-wrap: wrap;
 }
-.stat-box .lbl {
-  font-size: 9px; color: var(--muted); text-transform: uppercase;
-  letter-spacing: .06em; font-weight: 600; margin-top: 2px;
+.admin-section-header h4 {
+  font-size: 13px; font-weight: 700; margin: 0; color: var(--text);
 }
+.admin-hint { font-size: 10px; color: var(--muted); }
+.admin-search {
+  width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; margin-bottom: 8px; font-family: inherit; outline: none;
+}
+.admin-search:focus { border-color: var(--gold); }
+.admin-aroma-list {
+  max-height: 260px; overflow-y: auto;
+  border: 1px solid var(--border-soft); border-radius: 10px; background: #fff;
+}
+.admin-aroma-row {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.admin-aroma-row:last-child { border-bottom: none; }
+.admin-aroma-row .info { flex: 1; min-width: 0; }
+.admin-aroma-row .name {
+  font-size: 13px; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.admin-aroma-row .meta {
+  font-size: 10px; color: var(--muted); margin-top: 1px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.admin-aroma-row .actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+
+.toggle { position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0; cursor: pointer; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle .slider {
+  position: absolute; inset: 0; background: #ccc; border-radius: 22px;
+  cursor: pointer; transition: .2s;
+}
+.toggle .slider::before {
+  content: ''; position: absolute; height: 16px; width: 16px;
+  left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .2s;
+}
+.toggle input:checked + .slider { background: var(--gold); }
+.toggle input:checked + .slider::before { transform: translateX(18px); }
+
+.admin-delete-btn {
+  background: transparent; border: none; color: #C94A4A; cursor: pointer;
+  padding: 4px 6px; border-radius: 4px; font-size: 14px; line-height: 1;
+}
+.admin-delete-btn:hover { background: #FCE4E4; }
+
+.admin-bulk-actions { display: flex; gap: 6px; margin-top: 10px; }
+.btn-small {
+  flex: 1; padding: 8px 10px; border: 1px solid var(--border);
+  background: #fff; border-radius: 8px; font-size: 11px;
+  cursor: pointer; font-family: inherit; font-weight: 500; color: var(--subtle);
+  transition: all .15s;
+}
+.btn-small:hover { border-color: var(--gold); color: var(--gold); }
+
+/* DETAIL MODAL */
+.detail-hero { margin-bottom: 20px; }
+.detail-hero h2 { font-family: 'Playfair Display', serif; font-weight: 600; margin: 8px 0 4px; font-size: 1.5rem; line-height: 1.2; }
+.detail-hero .origin { font-size: 12px; margin-bottom: 12px; }
+.detail-section { margin-bottom: 18px; }
+.detail-section h4 {
+  font-size: 11px; font-weight: 700; color: var(--gold-dark);
+  text-transform: uppercase; letter-spacing: .08em; margin: 0 0 8px;
+}
+.detail-notes {
+  background: var(--bg-tint); border-radius: 12px; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.detail-notes .row { display: flex; gap: 10px; font-size: 13px; line-height: 1.5; }
+.detail-notes .lbl {
+  min-width: 50px; font-weight: 700; color: var(--gold-dark); font-size: 11px;
+  text-transform: uppercase; letter-spacing: .04em; padding-top: 1px;
+}
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.detail-item { background: var(--bg-tint); border-radius: 10px; padding: 10px 12px; }
+.detail-item .k {
+  font-size: 10px; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .06em; font-weight: 600; margin-bottom: 3px;
+}
+.detail-item .v { font-size: 13px; color: var(--text); font-weight: 500; }
+.detail-desc { font-size: 14px; color: var(--subtle); line-height: 1.6; margin: 0; }
+.detail-actions {
+  display: flex; gap: 8px; margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid var(--border-soft); flex-wrap: wrap;
+}
+.detail-actions .btn { flex: 1; margin-bottom: 0; min-width: 100px; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+  background: var(--text); color: #fff; padding: 12px 20px; border-radius: 12px;
+  font-size: 13px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 200; animation: toastIn .25s ease;
+}
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
 </style>
 </head>
 <body>
@@ -365,42 +494,54 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 
 <section class="hero">
   <h1>Temukan aroma yang tepat</h1>
-  <p>Jelajahi koleksi aroma <em>King Parfum Indonesia</em> — pilih skenario, filter, atau ketik langsung</p>
-
+  <p>Jelajahi koleksi aroma <em>King Parfum Indonesia</em> — cari, filter, dan simpan favoritmu</p>
   <div class="searchbar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" id="searchInput" placeholder="Cari nama aroma, brand asli, notes, atau kata kunci...">
+    <input type="text" id="searchInput" placeholder="Cari nama, brand asli, notes, atau kata kunci...">
     <button class="clear-x" id="clearX" title="Hapus">×</button>
   </div>
+  <button class="filter-toggle" id="filterToggle">Filter aroma <span class="chev">▼</span></button>
+</section>
 
-  <div class="quick-label">Mau cari aroma untuk apa?</div>
-  <div class="quick-chips" id="quickChips"></div>
+<div class="filters-panel" id="filtersPanel">
+  <div class="filter-group" id="fgGender"><div class="filter-label">Gender</div><div class="chips" id="chipsGender"></div></div>
+  <div class="filter-group" id="fgOccasion"><div class="filter-label">Occasion</div><div class="chips" id="chipsOccasion"></div></div>
+  <div class="filter-group" id="fgWaktu"><div class="filter-label">Waktu Pakai</div><div class="chips" id="chipsWaktu"></div></div>
+  <div class="filter-group" id="fgMusim"><div class="filter-label">Musim</div><div class="chips" id="chipsMusim"></div></div>
+  <div class="filter-group" id="fgAccords"><div class="filter-label">Karakter Aroma</div><div class="chips" id="chipsAccords"></div></div>
+  <div class="filter-group" id="fgKonsentrasi"><div class="filter-label">Konsentrasi</div><div class="chips" id="chipsKonsentrasi"></div></div>
+  <div class="filter-group" id="fgLongevity"><div class="filter-label">Ketahanan</div><div class="chips" id="chipsLongevity"></div></div>
+  <div class="filter-group" id="fgSillage"><div class="filter-label">Jejak Aroma</div><div class="chips" id="chipsSillage"></div></div>
+</div>
 
-  <button class="advanced-toggle" id="advToggle">
-    Filter lanjutan <span class="chev">▼</span>
-  </button>
-
-  <div class="advanced-filters" id="advFilters">
-    <div class="filter-group" id="fgGender"><div class="filter-label">Gender</div><div class="chips" id="chipsGender"></div></div>
-    <div class="filter-group" id="fgWaktu"><div class="filter-label">Waktu Pakai</div><div class="chips" id="chipsWaktu"></div></div>
-    <div class="filter-group" id="fgMusim"><div class="filter-label">Musim</div><div class="chips" id="chipsMusim"></div></div>
-    <div class="filter-group" id="fgAccords"><div class="filter-label">Karakter Aroma</div><div class="chips" id="chipsAccords"></div></div>
-    <div class="filter-group" id="fgKonsentrasi"><div class="filter-label">Konsentrasi</div><div class="chips" id="chipsKonsentrasi"></div></div>
-    <div class="filter-group" id="fgLongevity"><div class="filter-label">Ketahanan</div><div class="chips" id="chipsLongevity"></div></div>
-    <div class="filter-group" id="fgSillage"><div class="filter-label">Jejak Aroma</div><div class="chips" id="chipsSillage"></div></div>
+<section class="new-section" id="newSection">
+  <div class="new-header">
+    <div>
+      <h2><span class="sparkle">✨</span> Aroma Terbaru</h2>
+      <p>Baru ditambahkan ke koleksi</p>
+    </div>
+    <span class="new-count" id="newCount">0</span>
   </div>
+  <div class="new-scroll" id="newGrid"></div>
 </section>
 
 <section class="results">
   <div class="results-bar">
     <div class="count" id="count">Memuat data...</div>
     <div class="tools">
+      <button class="icon-btn" id="favToggle" title="Hanya favorit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Favorit</span>
+      </button>
       <select id="sortSelect">
         <option value="nomor">Nomor</option>
         <option value="nama">Nama A-Z</option>
         <option value="accords">Karakter Aroma</option>
         <option value="terbaru">Terbaru</option>
       </select>
+      <button class="icon-btn" id="viewToggle" title="Ganti tampilan">
+        <svg id="viewIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      </button>
       <button class="btn-reset hidden" id="resetFilters">Reset</button>
     </div>
   </div>
@@ -426,27 +567,64 @@ mark { background: rgba(212, 184, 117, 0.4); color: inherit; padding: 0 2px; bor
 </div>
 
 <div class="modal" id="adminModal">
-  <div class="modal-content" style="max-width: 420px;">
+  <div class="modal-content admin-wide">
     <div class="modal-header">
       <h3>Admin Panel</h3>
       <button class="modal-close" data-close="adminModal">×</button>
     </div>
+
     <div class="admin-stats">
-      <div class="stat-box"><div class="num" id="statTotal">—</div><div class="lbl">Total Aroma</div></div>
+      <div class="stat-box"><div class="num" id="statTotal">—</div><div class="lbl">Total</div></div>
+      <div class="stat-box"><div class="num" id="statNew">—</div><div class="lbl">Baru</div></div>
       <div class="stat-box"><div class="num" id="statKategori">—</div><div class="lbl">Karakter</div></div>
-      <div class="stat-box"><div class="num" id="statOccasion">—</div><div class="lbl">Occasion</div></div>
     </div>
-    <button class="btn primary" id="uploadBtn">⬆ Upload Excel</button>
-    <button class="btn" id="templateBtn">⬇ Download Template</button>
-    <label class="row-check">
-      <input type="checkbox" id="replaceMode"> Ganti semua data (hapus dulu)
-    </label>
-    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" class="hidden">
-    <div id="uploadMsg"></div>
-    <button class="btn danger" id="logoutBtn" style="margin-top: 10px;">Keluar</button>
-    <div class="admin-note">
-      <b>Kolom Excel</b>: <code>No</code> · <code>Nama Aroma (Clone)</code> · <code>Nama Parfum Asli</code> · <code>Brand Asli</code> · <code>Top Notes</code> · <code>Middle Notes</code> · <code>Base Notes</code> · <code>Longevity</code> · <code>Sillage</code> · <code>Konsentrasi</code> · <code>Main Accords</code> · <code>Gender</code> · <code>Waktu</code> · <code>Musim</code> · <code>Occasion</code> · <code>Deskripsi</code> · <code>Cocok Untuk</code> · <code>Kata Kunci</code>. Hanya <b>Nama Aroma</b> yang wajib.
+
+    <!-- ⭐ Kelola Aroma Baru -->
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <h4>⭐ Kelola Aroma Baru</h4>
+        <span class="admin-hint">Toggle untuk tampil di section "Aroma Terbaru"</span>
+      </div>
+      <input type="text" id="adminSearch" class="admin-search" placeholder="Cari nama aroma...">
+      <div class="admin-aroma-list" id="adminAromaList">
+        <div style="padding: 20px; text-align: center; color: var(--muted); font-size: 12px;">Memuat...</div>
+      </div>
+      <div class="admin-bulk-actions">
+        <button class="btn-small" id="markAllBtn">✓ Tandai semua</button>
+        <button class="btn-small" id="clearAllBtn">✕ Hapus semua tanda</button>
+      </div>
     </div>
+
+    <!-- 📤 Upload -->
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <h4>📤 Upload / Template</h4>
+      </div>
+      <button class="btn primary" id="uploadBtn">⬆ Upload Excel</button>
+      <button class="btn" id="templateBtn">⬇ Download Template</button>
+      <label class="row-check">
+        <input type="checkbox" id="replaceMode"> Ganti semua data (hapus dulu)
+      </label>
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" class="hidden">
+      <div id="uploadMsg"></div>
+      <div class="admin-note">
+        <b>Kolom Excel</b>: <code>No</code> · <code>Nama Aroma (Clone)</code> · <code>Nama Parfum Asli</code> · <code>Brand Asli</code> · <code>Top Notes</code> · <code>Middle Notes</code> · <code>Base Notes</code> · <code>Longevity</code> · <code>Sillage</code> · <code>Konsentrasi</code> · <code>Main Accords</code> · <code>Gender</code> · <code>Waktu</code> · <code>Musim</code> · <code>Occasion</code> · <code>Deskripsi</code> · <code>Cocok Untuk</code> · <code>Kata Kunci</code> · <code>Aroma Baru</code>.
+        <br><br>
+        <b>Aroma Baru</b>: isi <code>Ya</code> / <code>Tidak</code>. Atau pakai toggle di panel atas untuk atur manual setelah upload.
+      </div>
+    </div>
+
+    <button class="btn danger" id="logoutBtn">Keluar</button>
+  </div>
+</div>
+
+<div class="modal" id="detailModal">
+  <div class="modal-content wide">
+    <div class="modal-header">
+      <h3 id="detailTitle"></h3>
+      <button class="modal-close" data-close="detailModal">×</button>
+    </div>
+    <div id="detailBody"></div>
   </div>
 </div>
 
@@ -468,20 +646,16 @@ const $ = id => document.getElementById(id);
 
 let aromas = [];
 let tokens = [];
+let currentDetail = null;
+let favorites = JSON.parse(localStorage.getItem('scentia_favs') || '[]');
+let showOnlyFavs = false;
+let viewMode = localStorage.getItem('scentia_view') || 'grid';
+let adminLoggedIn = false;
+
 const filters = {
-  occasion: '', gender: '', waktu: '', musim: '',
+  gender: '', occasion: '', waktu: '', musim: '',
   main_accords: '', konsentrasi: '', longevity: '', sillage: '',
 };
-
-const QUICK_SCENARIOS = [
-  { key: 'Kerja',   emoji: '💼' },
-  { key: 'Santai',  emoji: '☕' },
-  { key: 'Tidur',   emoji: '🌙' },
-  { key: 'Kencan',  emoji: '❤️' },
-  { key: 'Formal',  emoji: '🎉' },
-  { key: 'Olahraga',emoji: '🏃' },
-  { key: 'Hadiah',  emoji: '🎁' },
-];
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c =>
@@ -495,93 +669,63 @@ function highlight(text, toks) {
   const pattern = toks.filter(Boolean).map(escapeRegex).join('|');
   if (!pattern) return escapeHtml(str);
   const re = new RegExp('(' + pattern + ')', 'gi');
-  return str.split(re).map((p, i) =>
-    i % 2 === 1 ? `<mark>${escapeHtml(p)}</mark>` : escapeHtml(p)).join('');
+  return str.split(re).map((p, i) => i % 2 === 1 ? `<mark>${escapeHtml(p)}</mark>` : escapeHtml(p)).join('');
 }
-function tagsOf(val) {
-  if (!val) return [];
-  return String(val).split(',').map(s => s.trim()).filter(Boolean);
-}
-function hasTag(fieldVal, tag) {
-  if (!tag) return true;
-  return tagsOf(fieldVal).some(t => t.toLowerCase() === tag.toLowerCase());
-}
+function tagsOf(val) { if (!val) return []; return String(val).split(',').map(s => s.trim()).filter(Boolean); }
+function hasTag(fieldVal, tag) { if (!tag) return true; return tagsOf(fieldVal).some(t => t.toLowerCase() === tag.toLowerCase()); }
 function countTags(field) {
-  const map = {};
-  aromas.forEach(a => tagsOf(a[field]).forEach(t => { map[t] = (map[t] || 0) + 1; }));
-  return map;
+  const map = {}; aromas.forEach(a => tagsOf(a[field]).forEach(t => { map[t] = (map[t] || 0) + 1; })); return map;
+}
+function isTruthy(v) {
+  const s = String(v ?? '').trim().toLowerCase();
+  return s === 'ya' || s === 'yes' || s === 'true' || s === '1' || s === 'y';
+}
+function toast(msg) {
+  const el = document.createElement('div');
+  el.className = 'toast'; el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2500);
 }
 
 async function loadAromas() {
   const { data, error } = await db.from(TABLE).select('*');
-  if (error) {
-    console.error(error);
-    $('count').textContent = 'Gagal memuat data. Coba refresh.';
-    return;
-  }
+  if (error) { console.error(error); $('count').textContent = 'Gagal memuat data.'; return; }
   aromas = data || [];
-  buildQuickChips();
   buildAdvancedChips();
+  renderNewSection();
   applyFilters();
   updateStats();
+  if (adminLoggedIn) renderAdminList();
 }
 function updateStats() {
   $('statTotal').textContent = aromas.length;
+  $('statNew').textContent = aromas.filter(a => a.is_new).length;
   $('statKategori').textContent = Object.keys(countTags('main_accords')).length;
-  $('statOccasion').textContent = Object.keys(countTags('occasion')).length;
-}
-
-function buildQuickChips() {
-  const counts = countTags('occasion');
-  const container = $('quickChips');
-  container.innerHTML = '';
-  QUICK_SCENARIOS.forEach(sc => {
-    const match = Object.keys(counts).find(k => k.toLowerCase() === sc.key.toLowerCase());
-    const n = match ? counts[match] : 0;
-    const b = document.createElement('button');
-    b.className = 'quick-chip' + (filters.occasion.toLowerCase() === sc.key.toLowerCase() ? ' active' : '');
-    b.innerHTML = `${sc.emoji} ${sc.key}` + (n > 0 ? ` <span class="n">${n}</span>` : '');
-    b.disabled = n === 0;
-    b.onclick = () => {
-      filters.occasion = filters.occasion.toLowerCase() === sc.key.toLowerCase() ? '' : sc.key;
-      buildQuickChips();
-      applyFilters();
-    };
-    container.appendChild(b);
-  });
 }
 
 const ADV_GROUPS = [
-  { field: 'gender',       el: 'chipsGender',      grp: 'fgGender',
-    preferred: ['Unisex','Pria','Wanita'] },
-  { field: 'waktu',        el: 'chipsWaktu',       grp: 'fgWaktu',
-    preferred: ['Siang','Malam','Siang & Malam'] },
-  { field: 'musim',        el: 'chipsMusim',       grp: 'fgMusim',
-    preferred: ['Spring','Summer','Fall','Winter'] },
-  { field: 'main_accords', el: 'chipsAccords',     grp: 'fgAccords',
-    preferred: ['Floral','Woody','Citrus','Fresh','Gourmand','Oriental','Sweet','Spicy','Earthy'] },
-  { field: 'konsentrasi',  el: 'chipsKonsentrasi', grp: 'fgKonsentrasi',
-    preferred: ['EDC','EDT','EDP','Parfum'] },
-  { field: 'longevity',    el: 'chipsLongevity',   grp: 'fgLongevity',
-    preferred: ['Ringan','Sedang','Long Lasting','Eternal'] },
-  { field: 'sillage',      el: 'chipsSillage',     grp: 'fgSillage',
-    preferred: ['Intimate','Moderate','Strong','Enormous'] },
+  { field: 'gender',       el: 'chipsGender',      grp: 'fgGender', preferred: ['Unisex','Pria','Wanita'] },
+  { field: 'occasion',     el: 'chipsOccasion',    grp: 'fgOccasion', preferred: ['Kerja','Santai','Tidur','Kencan','Formal','Olahraga','Hadiah'] },
+  { field: 'waktu',        el: 'chipsWaktu',       grp: 'fgWaktu', preferred: ['Siang','Malam','Siang & Malam'] },
+  { field: 'musim',        el: 'chipsMusim',       grp: 'fgMusim', preferred: ['Spring','Summer','Fall','Winter'] },
+  { field: 'main_accords', el: 'chipsAccords',     grp: 'fgAccords', preferred: ['Floral','Woody','Citrus','Fresh','Gourmand','Oriental','Sweet','Spicy','Earthy'] },
+  { field: 'konsentrasi',  el: 'chipsKonsentrasi', grp: 'fgKonsentrasi', preferred: ['EDC','EDT','EDP','Parfum'] },
+  { field: 'longevity',    el: 'chipsLongevity',   grp: 'fgLongevity', preferred: ['Ringan','Sedang','Long Lasting','Eternal'] },
+  { field: 'sillage',      el: 'chipsSillage',     grp: 'fgSillage', preferred: ['Intimate','Moderate','Strong','Enormous'] },
 ];
 
 function buildAdvancedChips() {
   ADV_GROUPS.forEach(g => {
     const counts = countTags(g.field);
     const keys = Object.keys(counts);
-    const container = $(g.el);
-    const groupEl = $(g.grp);
+    const container = $(g.el); const groupEl = $(g.grp);
     if (!keys.length) { groupEl.style.display = 'none'; return; }
     groupEl.style.display = '';
     keys.sort((a, b) => {
       const ai = g.preferred.findIndex(p => p.toLowerCase() === a.toLowerCase());
       const bi = g.preferred.findIndex(p => p.toLowerCase() === b.toLowerCase());
       if (ai !== -1 && bi !== -1) return ai - bi;
-      if (ai !== -1) return -1;
-      if (bi !== -1) return 1;
+      if (ai !== -1) return -1; if (bi !== -1) return 1;
       return a.localeCompare(b, 'id');
     });
     container.innerHTML = '';
@@ -596,32 +740,98 @@ function buildAdvancedChips() {
       b.innerHTML = `${escapeHtml(k)} <span class="n">${counts[k]}</span>`;
       b.onclick = () => {
         filters[g.field] = filters[g.field].toLowerCase() === k.toLowerCase() ? '' : k;
-        buildAdvancedChips();
-        applyFilters();
+        buildAdvancedChips(); applyFilters();
       };
       container.appendChild(b);
     });
   });
-  updateAdvancedBadge();
+  updateFilterBadge();
 }
-function updateAdvancedBadge() {
-  const advFields = ['gender','waktu','musim','main_accords','konsentrasi','longevity','sillage'];
-  const n = advFields.filter(f => filters[f]).length;
-  const btn = $('advToggle');
+function updateFilterBadge() {
+  const n = Object.keys(filters).filter(f => filters[f]).length;
+  const btn = $('filterToggle');
   const existing = btn.querySelector('.badge');
   if (existing) existing.remove();
   if (n > 0) {
     const badge = document.createElement('span');
-    badge.className = 'badge';
-    badge.textContent = n;
+    badge.className = 'badge'; badge.textContent = n;
     btn.insertBefore(badge, btn.querySelector('.chev'));
   }
+}
+
+function renderNewSection() {
+  const newItems = aromas.filter(a => a.is_new)
+    .sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
+    .slice(0, 12);
+  const section = $('newSection');
+  if (!newItems.length) { section.classList.remove('visible'); return; }
+  section.classList.add('visible');
+  $('newCount').textContent = newItems.length + ' item baru';
+  $('newGrid').innerHTML = '';
+  newItems.forEach(a => $('newGrid').appendChild(createCard(a)));
+}
+
+function createCard(a, idx) {
+  const card = document.createElement('div');
+  card.className = 'card' + (a.is_new ? ' is-new' : '');
+  const fav = favorites.includes(a.id);
+  const badges = [];
+  if (a.is_new) badges.push(`<span class="badge new">BARU</span>`);
+  const noLabel = a.nomor ? String(a.nomor).padStart(2, '0') : (idx !== undefined ? String(idx + 1).padStart(2, '0') : '');
+  if (noLabel) badges.push(`<span class="badge nomor">#${noLabel}</span>`);
+  tagsOf(a.main_accords).slice(0, 2).forEach(t => badges.push(`<span class="badge accords">${escapeHtml(t)}</span>`));
+  if (a.gender) badges.push(`<span class="badge gender">${escapeHtml(a.gender)}</span>`);
+  tagsOf(a.occasion).slice(0, 2).forEach(t => badges.push(`<span class="badge occasion">${escapeHtml(t)}</span>`));
+  if (a.waktu) badges.push(`<span class="badge waktu">${escapeHtml(a.waktu)}</span>`);
+
+  let originHtml = '';
+  if (a.nama_asli || a.brand_asli) {
+    const parts = [];
+    if (a.nama_asli) parts.push(`<b>${highlight(a.nama_asli, tokens)}</b>`);
+    if (a.brand_asli) parts.push(highlight(a.brand_asli, tokens));
+    originHtml = `<div class="origin">Klon dari ${parts.join(' · ')}</div>`;
+  }
+  const notesRows = [
+    { lbl: 'Top', val: a.top_notes }, { lbl: 'Heart', val: a.middle_notes }, { lbl: 'Base', val: a.base_notes },
+  ].filter(r => r.val);
+  const pyramidHtml = notesRows.length
+    ? `<div class="notes-pyramid">${notesRows.map(r =>
+        `<div class="row"><span class="lbl">${r.lbl}</span><span>${highlight(r.val, tokens)}</span></div>`).join('')}</div>` : '';
+  const extras = [];
+  if (a.konsentrasi) extras.push(`<span>${escapeHtml(a.konsentrasi)}</span>`);
+  if (a.longevity) extras.push(`<span>⏱ ${escapeHtml(a.longevity)}</span>`);
+  if (a.sillage) extras.push(`<span>💨 ${escapeHtml(a.sillage)}</span>`);
+  if (a.musim) extras.push(`<span>🌤 ${escapeHtml(a.musim)}</span>`);
+
+  card.innerHTML = `
+    <button class="fav-btn ${fav ? 'active' : ''}" data-fav="${a.id}" title="Favorit">
+      <svg viewBox="0 0 24 24" fill="${fav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </button>
+    <div class="badges">${badges.join('')}</div>
+    <h3>${highlight(a.nama, tokens)}</h3>
+    ${originHtml}
+    ${a.deskripsi ? `<p class="desc">${highlight(a.deskripsi, tokens)}</p>` : ''}
+    ${pyramidHtml}
+    ${extras.length ? `<div class="extra-info">${extras.join('')}</div>` : ''}
+  `;
+  card.querySelector('.fav-btn').addEventListener('click', (e) => { e.stopPropagation(); toggleFav(a.id); });
+  card.addEventListener('click', () => openDetail(a));
+  return card;
+}
+
+function toggleFav(id) {
+  const idx = favorites.indexOf(id);
+  if (idx === -1) { favorites.push(id); toast('Ditambahkan ke favorit ⭐'); }
+  else { favorites.splice(idx, 1); toast('Dihapus dari favorit'); }
+  localStorage.setItem('scentia_favs', JSON.stringify(favorites));
+  applyFilters(); renderNewSection();
 }
 
 function applyFilters() {
   const q = $('searchInput').value.toLowerCase().trim();
   tokens = q ? q.split(/\s+/).filter(Boolean) : [];
   const filtered = aromas.filter(a => {
+    if (showOnlyFavs && !favorites.includes(a.id)) return false;
     if (!hasTag(a.occasion, filters.occasion)) return false;
     if (!hasTag(a.main_accords, filters.main_accords)) return false;
     if (!hasTag(a.musim, filters.musim)) return false;
@@ -631,12 +841,9 @@ function applyFilters() {
     if (filters.longevity && (a.longevity || '').toLowerCase() !== filters.longevity.toLowerCase()) return false;
     if (filters.sillage && (a.sillage || '').toLowerCase() !== filters.sillage.toLowerCase()) return false;
     if (tokens.length) {
-      const hay = [
-        a.nama, a.nama_asli, a.brand_asli, a.top_notes, a.middle_notes, a.base_notes,
-        a.main_accords, a.gender, a.waktu, a.musim, a.occasion,
-        a.deskripsi, a.cocok_untuk, a.kata_kunci, a.konsentrasi,
-        a.longevity, a.sillage,
-      ].filter(Boolean).join(' ').toLowerCase();
+      const hay = [a.nama, a.nama_asli, a.brand_asli, a.top_notes, a.middle_notes, a.base_notes,
+        a.main_accords, a.gender, a.waktu, a.musim, a.occasion, a.deskripsi, a.cocok_untuk,
+        a.kata_kunci, a.konsentrasi, a.longevity, a.sillage].filter(Boolean).join(' ').toLowerCase();
       return tokens.every(t => hay.includes(t));
     }
     return true;
@@ -660,92 +867,122 @@ function applyFilters() {
   $('clearX').classList.toggle('show', q.length > 0);
   updateResetBtn();
 }
-function updateResetBtn() {
-  const anyFilter = filters.occasion || filters.gender || filters.waktu ||
-    filters.musim || filters.main_accords || filters.konsentrasi ||
-    filters.longevity || filters.sillage || $('searchInput').value;
-  $('resetFilters').classList.toggle('hidden', !anyFilter);
-}
 
 function render(list) {
-  $('count').innerHTML = `<b>${list.length}</b> aroma ditemukan${aromas.length ? ` dari ${aromas.length}` : ''}`;
+  const favNote = showOnlyFavs ? ' favorit' : '';
+  $('count').innerHTML = `<b>${list.length}</b> aroma${favNote} ditemukan${aromas.length && !showOnlyFavs ? ` dari ${aromas.length}` : ''}`;
   $('grid').innerHTML = '';
+  $('grid').className = 'grid' + (viewMode === 'list' ? ' list' : '');
   $('noResults').classList.add('hidden');
   if (!list.length) {
     $('noResults').classList.remove('hidden');
-    $('noResults').innerHTML = aromas.length
-      ? `<span class="emoji">🔍</span>Tidak ada aroma yang cocok.<br>Coba hapus filter atau ubah kata kunci.`
-      : `<span class="emoji">📭</span>Belum ada data aroma.`;
+    $('noResults').innerHTML = showOnlyFavs
+      ? `<span class="emoji">⭐</span>Belum ada aroma favorit.`
+      : aromas.length
+        ? `<span class="emoji">🔍</span>Tidak ada aroma yang cocok.`
+        : `<span class="emoji">📭</span>Belum ada data aroma.`;
     return;
   }
-  list.forEach((a, idx) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    const badges = [];
-    const noLabel = a.nomor ? String(a.nomor).padStart(2, '0') : String(idx + 1).padStart(2, '0');
-    badges.push(`<span class="badge nomor">#${noLabel}</span>`);
-    tagsOf(a.main_accords).slice(0, 2).forEach(t =>
-      badges.push(`<span class="badge accords">${escapeHtml(t)}</span>`));
-    if (a.gender) badges.push(`<span class="badge gender">${escapeHtml(a.gender)}</span>`);
-    tagsOf(a.occasion).slice(0, 2).forEach(t =>
-      badges.push(`<span class="badge occasion">${escapeHtml(t)}</span>`));
-    if (a.waktu) badges.push(`<span class="badge waktu">${escapeHtml(a.waktu)}</span>`);
-
-    let originHtml = '';
-    if (a.nama_asli || a.brand_asli) {
-      const parts = [];
-      if (a.nama_asli) parts.push(`<b>${highlight(a.nama_asli, tokens)}</b>`);
-      if (a.brand_asli) parts.push(highlight(a.brand_asli, tokens));
-      originHtml = `<div class="origin">Klon dari ${parts.join(' · ')}</div>`;
-    }
-
-    const notesRows = [
-      { lbl: 'Top', val: a.top_notes },
-      { lbl: 'Heart', val: a.middle_notes },
-      { lbl: 'Base', val: a.base_notes },
-    ].filter(r => r.val);
-    const pyramidHtml = notesRows.length
-      ? `<div class="notes-pyramid">${notesRows.map(r =>
-          `<div class="row"><span class="lbl">${r.lbl}</span><span>${highlight(r.val, tokens)}</span></div>`
-        ).join('')}</div>`
-      : '';
-    const extras = [];
-    if (a.konsentrasi) extras.push(`<span>${escapeHtml(a.konsentrasi)}</span>`);
-    if (a.longevity) extras.push(`<span>⏱ ${escapeHtml(a.longevity)}</span>`);
-    if (a.sillage) extras.push(`<span>💨 ${escapeHtml(a.sillage)}</span>`);
-    if (a.musim) extras.push(`<span>🌤 ${escapeHtml(a.musim)}</span>`);
-
-    card.innerHTML = `
-      <div class="badges">${badges.join('')}</div>
-      <h3>${highlight(a.nama, tokens)}</h3>
-      ${originHtml}
-      ${a.deskripsi ? `<p class="desc">${highlight(a.deskripsi, tokens)}</p>` : ''}
-      ${pyramidHtml}
-      ${extras.length ? `<div class="extra-info">${extras.join('')}</div>` : ''}
-    `;
-    $('grid').appendChild(card);
-  });
+  list.forEach((a, idx) => $('grid').appendChild(createCard(a, idx)));
 }
 
+function updateResetBtn() {
+  const anyFilter = Object.values(filters).some(v => v) || $('searchInput').value || showOnlyFavs;
+  $('resetFilters').classList.toggle('hidden', !anyFilter);
+}
+
+function openDetail(a) {
+  currentDetail = a;
+  $('detailTitle').textContent = '';
+  const body = $('detailBody');
+  const badges = [];
+  if (a.is_new) badges.push(`<span class="badge new">BARU</span>`);
+  if (a.nomor) badges.push(`<span class="badge nomor">#${String(a.nomor).padStart(2,'0')}</span>`);
+  tagsOf(a.main_accords).forEach(t => badges.push(`<span class="badge accords">${escapeHtml(t)}</span>`));
+  if (a.gender) badges.push(`<span class="badge gender">${escapeHtml(a.gender)}</span>`);
+  const notesRows = [
+    { lbl: 'Top', val: a.top_notes }, { lbl: 'Heart', val: a.middle_notes }, { lbl: 'Base', val: a.base_notes },
+  ].filter(r => r.val);
+  const notesHtml = notesRows.length
+    ? `<div class="detail-notes">${notesRows.map(r =>
+        `<div class="row"><span class="lbl">${r.lbl}</span><span>${escapeHtml(r.val)}</span></div>`).join('')}</div>` : '';
+  const detailItems = [];
+  if (a.gender) detailItems.push({ k: 'Gender', v: a.gender });
+  if (a.konsentrasi) detailItems.push({ k: 'Konsentrasi', v: a.konsentrasi });
+  if (a.waktu) detailItems.push({ k: 'Waktu Pakai', v: a.waktu });
+  if (a.musim) detailItems.push({ k: 'Musim', v: a.musim });
+  if (a.longevity) detailItems.push({ k: 'Ketahanan', v: a.longevity });
+  if (a.sillage) detailItems.push({ k: 'Jejak Aroma', v: a.sillage });
+  const detailHtml = detailItems.length
+    ? `<div class="detail-grid">${detailItems.map(i =>
+        `<div class="detail-item"><div class="k">${i.k}</div><div class="v">${escapeHtml(i.v)}</div></div>`).join('')}</div>` : '';
+  const occasionBadges = tagsOf(a.occasion).map(t => `<span class="badge occasion">${escapeHtml(t)}</span>`).join(' ');
+  const isFav = favorites.includes(a.id);
+  body.innerHTML = `
+    <div class="detail-hero">
+      <div class="badges">${badges.join('')}</div>
+      <h2>${escapeHtml(a.nama)}</h2>
+      ${(a.nama_asli || a.brand_asli) ? `<div class="origin">Klon dari <b>${escapeHtml(a.nama_asli || '-')}</b>${a.brand_asli ? ' · ' + escapeHtml(a.brand_asli) : ''}</div>` : ''}
+    </div>
+    ${notesHtml ? `<div class="detail-section"><h4>Piramida Notes</h4>${notesHtml}</div>` : ''}
+    ${detailHtml ? `<div class="detail-section"><h4>Detail Aroma</h4>${detailHtml}</div>` : ''}
+    ${occasionBadges ? `<div class="detail-section"><h4>Occasion</h4><div class="chips">${occasionBadges}</div></div>` : ''}
+    ${a.deskripsi ? `<div class="detail-section"><h4>Deskripsi</h4><p class="detail-desc">${escapeHtml(a.deskripsi)}</p></div>` : ''}
+    ${a.cocok_untuk ? `<div class="detail-section"><h4>Cocok Untuk</h4><p class="detail-desc">${escapeHtml(a.cocok_untuk)}</p></div>` : ''}
+    <div class="detail-actions">
+      <button class="btn ${isFav ? 'primary' : ''}" id="detailFavBtn">${isFav ? '★ Tersimpan' : '☆ Simpan Favorit'}</button>
+      <button class="btn wa" id="detailWaBtn">↗ WhatsApp</button>
+      <button class="btn" id="detailCopyBtn">🔗 Copy Link</button>
+    </div>
+  `;
+  $('detailFavBtn').onclick = () => { toggleFav(a.id); openDetail(a); };
+  $('detailWaBtn').onclick = () => {
+    const text = `Cek aroma "${a.nama}"${a.nama_asli ? ' (klon dari ' + a.nama_asli + ')' : ''} di King Parfum Indonesia:\n${location.href.split('#')[0]}`;
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+  };
+  $('detailCopyBtn').onclick = async () => {
+    const url = location.href.split('#')[0] + '#aroma-' + a.id;
+    try { await navigator.clipboard.writeText(url); toast('Link disalin'); }
+    catch { toast('Gagal menyalin'); }
+  };
+  openModal('detailModal');
+}
+
+// ============ EVENTS ============
 $('searchInput').addEventListener('input', applyFilters);
-$('clearX').addEventListener('click', () => {
-  $('searchInput').value = '';
-  applyFilters();
-  $('searchInput').focus();
-});
+$('clearX').addEventListener('click', () => { $('searchInput').value = ''; applyFilters(); $('searchInput').focus(); });
 $('sortSelect').addEventListener('change', applyFilters);
 $('resetFilters').addEventListener('click', () => {
   Object.keys(filters).forEach(k => filters[k] = '');
   $('searchInput').value = '';
-  buildQuickChips();
-  buildAdvancedChips();
+  showOnlyFavs = false;
+  $('favToggle').classList.remove('active');
+  buildAdvancedChips(); applyFilters();
+});
+$('filterToggle').addEventListener('click', () => {
+  $('filtersPanel').classList.toggle('open');
+  $('filterToggle').classList.toggle('open');
+});
+$('favToggle').addEventListener('click', () => {
+  showOnlyFavs = !showOnlyFavs;
+  $('favToggle').classList.toggle('active', showOnlyFavs);
   applyFilters();
 });
-$('advToggle').addEventListener('click', () => {
-  $('advFilters').classList.toggle('open');
-  $('advToggle').classList.toggle('open');
+$('viewToggle').addEventListener('click', () => {
+  viewMode = viewMode === 'grid' ? 'list' : 'grid';
+  localStorage.setItem('scentia_view', viewMode);
+  updateViewIcon(); applyFilters();
 });
+function updateViewIcon() {
+  const icon = $('viewIcon');
+  if (viewMode === 'grid') {
+    icon.innerHTML = '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>';
+  } else {
+    icon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  }
+}
 
+// ============ MODAL HELPERS ============
 $('adminTrigger').addEventListener('click', () => openModal('pinModal'));
 document.querySelectorAll('[data-close]').forEach(btn => {
   btn.addEventListener('click', () => closeModal(btn.dataset.close));
@@ -753,9 +990,13 @@ document.querySelectorAll('[data-close]').forEach(btn => {
 document.querySelectorAll('.modal').forEach(m => {
   m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
 });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(m => closeModal(m.id));
+});
 function openModal(id) { $(id).classList.add('open'); }
 function closeModal(id) { $(id).classList.remove('open'); }
 
+// ============ ADMIN LOGIN ============
 $('pinSubmit').addEventListener('click', async () => {
   const pin = $('pinInput').value.trim();
   const msg = (cls, txt) => $('pinMsg').innerHTML = `<div class="msg ${cls}">${txt}</div>`;
@@ -763,64 +1004,142 @@ $('pinSubmit').addEventListener('click', async () => {
   if (pin !== ADMIN_PIN) { msg('err', 'PIN salah.'); $('pinInput').value = ''; return; }
   msg('info', 'Memverifikasi...');
   const { error } = await db.auth.signInWithPassword({ email: ADMIN_EMAIL, password: ADMIN_PASSWORD });
-  if (error) { msg('err', 'Gagal masuk. Periksa kembali pengaturan admin.'); return; }
-  $('pinInput').value = '';
-  $('pinMsg').innerHTML = '';
+  if (error) { msg('err', 'Gagal masuk.'); return; }
+  $('pinInput').value = ''; $('pinMsg').innerHTML = '';
+  adminLoggedIn = true;
   closeModal('pinModal');
   openModal('adminModal');
   updateStats();
+  renderAdminList();
 });
-$('pinInput').addEventListener('keypress', e => {
-  if (e.key === 'Enter') $('pinSubmit').click();
-});
+$('pinInput').addEventListener('keypress', e => { if (e.key === 'Enter') $('pinSubmit').click(); });
 $('logoutBtn').addEventListener('click', async () => {
   await db.auth.signOut();
+  adminLoggedIn = false;
   closeModal('adminModal');
 });
 
+// ============ ADMIN LIST — KELOLA AROMA BARU ============
+function renderAdminList() {
+  const container = $('adminAromaList');
+  if (!container) return;
+  const q = ($('adminSearch').value || '').toLowerCase().trim();
+  const filtered = aromas.filter(a => {
+    if (!q) return true;
+    return (a.nama || '').toLowerCase().includes(q) ||
+           (a.nama_asli || '').toLowerCase().includes(q) ||
+           (a.brand_asli || '').toLowerCase().includes(q);
+  });
+
+  if (!filtered.length) {
+    container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--muted); font-size: 12px;">' +
+      (aromas.length ? 'Tidak ada aroma yang cocok.' : 'Belum ada data aroma. Upload dulu.') + '</div>';
+    return;
+  }
+
+  container.innerHTML = '';
+  filtered.forEach(a => {
+    const row = document.createElement('div');
+    row.className = 'admin-aroma-row';
+    const metaParts = [];
+    if (a.nama_asli) metaParts.push(a.nama_asli);
+    if (a.brand_asli) metaParts.push(a.brand_asli);
+    row.innerHTML = `
+      <div class="info">
+        <div class="name">${escapeHtml(a.nama)}</div>
+        ${metaParts.length ? `<div class="meta">${escapeHtml(metaParts.join(' · '))}</div>` : ''}
+      </div>
+      <div class="actions">
+        <label class="toggle" title="${a.is_new ? 'Klik untuk hapus tanda Baru' : 'Klik untuk tandai Baru'}">
+          <input type="checkbox" ${a.is_new ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+        <button class="admin-delete-btn" title="Hapus aroma">🗑</button>
+      </div>
+    `;
+    const toggle = row.querySelector('input[type=checkbox]');
+    toggle.addEventListener('change', async (e) => {
+      const isNew = e.target.checked;
+      const { error } = await db.from(TABLE).update({ is_new: isNew }).eq('id', a.id);
+      if (error) {
+        toast('Gagal update: ' + error.message);
+        e.target.checked = !isNew;
+        return;
+      }
+      a.is_new = isNew;
+      updateStats();
+      renderNewSection();
+      applyFilters();
+      toast(isNew ? `"${a.nama}" ditandai BARU ✓` : `Tanda Baru "${a.nama}" dihapus`);
+    });
+    const delBtn = row.querySelector('.admin-delete-btn');
+    delBtn.addEventListener('click', async () => {
+      if (!confirm(`Hapus "${a.nama}" dari database?\n\nTindakan ini tidak bisa dibatalkan.`)) return;
+      const { error } = await db.from(TABLE).delete().eq('id', a.id);
+      if (error) { toast('Gagal hapus: ' + error.message); return; }
+      toast(`"${a.nama}" dihapus`);
+      await loadAromas();
+    });
+    container.appendChild(row);
+  });
+}
+
+$('adminSearch').addEventListener('input', renderAdminList);
+
+$('markAllBtn').addEventListener('click', async () => {
+  if (!aromas.length) { toast('Belum ada data'); return; }
+  if (!confirm(`Tandai SEMUA ${aromas.length} aroma sebagai BARU?`)) return;
+  const { error } = await db.from(TABLE).update({ is_new: true }).neq('id', 0);
+  if (error) { toast('Gagal: ' + error.message); return; }
+  toast(`Semua ${aromas.length} aroma ditandai BARU`);
+  await loadAromas();
+});
+
+$('clearAllBtn').addEventListener('click', async () => {
+  const count = aromas.filter(a => a.is_new).length;
+  if (!count) { toast('Tidak ada aroma bertanda baru'); return; }
+  if (!confirm(`Hapus tanda "Baru" dari ${count} aroma?`)) return;
+  const { error } = await db.from(TABLE).update({ is_new: false }).neq('id', 0);
+  if (error) { toast('Gagal: ' + error.message); return; }
+  toast(`Tanda Baru dihapus dari ${count} aroma`);
+  await loadAromas();
+});
+
+// ============ TEMPLATE ============
 $('templateBtn').addEventListener('click', () => {
   const headers = [
     'No','Nama Aroma (Clone)','Nama Parfum Asli','Brand Asli',
     'Top Notes','Middle Notes','Base Notes',
     'Longevity','Sillage','Konsentrasi','Main Accords',
     'Gender','Waktu','Musim','Occasion',
-    'Deskripsi','Cocok Untuk','Kata Kunci',
+    'Deskripsi','Cocok Untuk','Kata Kunci','Aroma Baru',
   ];
   const samples = [
-    [1,'Lavender','Lavender','Generic',
-     'Bergamot, Lavender','Lavender, Jasmine','Musk, Cedarwood',
+    [1,'Lavender','Lavender','Generic','Bergamot, Lavender','Lavender, Jasmine','Musk, Cedarwood',
      'Sedang','Moderate','EDT','Floral, Fresh','Unisex','Siang & Malam','Spring, Summer','Santai, Tidur',
-     'Wangi bunga lavender yang menenangkan dengan sentuhan herbal segar.','Relaksasi, aromaterapi tidur','tenang, tidur, bunga, herbal'],
-    [2,'Oud Royale','Oud Satin Mood','Maison Francis Kurkdjian',
-     'Saffron, Bergamot','Rose, Patchouli','Oud, Amber, Musk',
+     'Wangi bunga lavender yang menenangkan.','Relaksasi, tidur','tenang, tidur, bunga','Ya'],
+    [2,'Oud Royale','Oud Satin Mood','Maison Francis Kurkdjian','Saffron, Bergamot','Rose, Patchouli','Oud, Amber, Musk',
      'Long Lasting','Strong','EDP','Woody, Oriental','Unisex','Malam','Fall, Winter','Formal, Kencan',
-     'Aroma oud yang dalam, eksotis, dengan sentuhan rose dan amber.','Acara formal, malam hari','oud, mewah, eksotis, kuat'],
-    [3,'Bergamot Fresh','Acqua di Gio','Giorgio Armani',
-     'Bergamot, Lemon','Neroli, Green Tea','White Musk, Cedar',
-     'Ringan','Moderate','EDC','Citrus, Fresh','Unisex','Siang','Spring, Summer','Kerja, Olahraga',
-     'Aroma jeruk segar yang membangkitkan semangat.','Aktivitas siang, olahraga','jeruk, segar, energi, ringan'],
-    [4,'Vanilla Kiss','Good Girl','Carolina Herrera',
-     'Vanilla, Pear','Tonka Bean, Jasmine','Vanilla, Sandalwood, Musk',
+     'Aroma oud yang dalam dan eksotis.','Formal, malam hari','oud, mewah, eksotis','Ya'],
+    [3,'Bergamot Fresh','Acqua di Gio','Giorgio Armani','Bergamot, Lemon','Neroli, Green Tea','White Musk, Cedar',
+     'Ringan','Moderate','EDC','Citrus, Fresh','Pria','Siang','Spring, Summer','Kerja, Olahraga',
+     'Aroma jeruk segar membangkitkan semangat.','Siang, olahraga','jeruk, segar, energi','Tidak'],
+    [4,'Vanilla Kiss','Good Girl','Carolina Herrera','Vanilla, Pear','Tonka Bean, Jasmine','Vanilla, Sandalwood, Musk',
      'Long Lasting','Moderate','EDP','Gourmand, Sweet','Wanita','Malam','Fall, Winter','Kencan, Hadiah',
-     'Aroma vanilla manis dan hangat yang menggoda.','Kencan, hadiah untuk pasangan','manis, hangat, vanilla, romantis'],
-    [5,'Rose Elegance','Miss Dior','Christian Dior',
-     'Rose, Pink Pepper','Peony, Lily','Musk, Amber',
-     'Sedang','Moderate','EDP','Floral','Wanita','Siang & Malam','Spring, Summer','Formal, Hadiah',
-     'Aroma mawar klasik yang lembut, feminin, dan elegan.','Acara formal, hadiah','bunga, mawar, feminin, elegan'],
+     'Aroma vanilla manis dan hangat.','Kencan, hadiah','manis, hangat, vanilla','Tidak'],
   ];
   const ws = XLSX.utils.aoa_to_sheet([headers, ...samples]);
   ws['!cols'] = [
-    {wch:6},{wch:20},{wch:24},{wch:20},
-    {wch:22},{wch:22},{wch:22},
-    {wch:14},{wch:12},{wch:12},{wch:22},
-    {wch:10},{wch:14},{wch:14},{wch:20},
-    {wch:50},{wch:30},{wch:30},
+    {wch:6},{wch:20},{wch:24},{wch:20},{wch:22},{wch:22},{wch:22},
+    {wch:14},{wch:12},{wch:12},{wch:22},{wch:10},{wch:14},{wch:14},{wch:20},
+    {wch:50},{wch:30},{wch:30},{wch:12},
   ];
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Aroma');
   XLSX.writeFile(wb, 'template-aroma-scentia.xlsx');
 });
 
+// ============ UPLOAD ============
 $('uploadBtn').addEventListener('click', () => $('fileInput').click());
 $('fileInput').addEventListener('change', async (e) => {
   const file = e.target.files[0];
@@ -834,42 +1153,40 @@ $('fileInput').addEventListener('change', async (e) => {
     const ws = wb.Sheets[wb.SheetNames[0]];
     const rows = XLSX.utils.sheet_to_json(ws, { defval: '' });
     const str = v => String(v ?? '').trim() || null;
-    const num = v => {
-      if (v === '' || v == null) return null;
-      const n = parseInt(v);
-      return isNaN(n) ? null : n;
-    };
+    const num = v => { if (v === '' || v == null) return null; const n = parseInt(v); return isNaN(n) ? null : n; };
     const payload = rows.map(r => ({
-      nomor:         num(r['No'] ?? r['no'] ?? r['Nomor']),
-      nama:          str(r['Nama Aroma (Clone)'] ?? r['Nama Aroma'] ?? r['Nama']),
-      nama_asli:     str(r['Nama Parfum Asli'] ?? r['Nama Asli']),
-      brand_asli:    str(r['Brand Asli'] ?? r['Brand']),
-      top_notes:     str(r['Top Notes']),
-      middle_notes:  str(r['Middle Notes']),
-      base_notes:    str(r['Base Notes']),
-      longevity:     str(r['Longevity']),
-      sillage:       str(r['Sillage']),
-      konsentrasi:   str(r['Konsentrasi']),
-      main_accords:  str(r['Main Accords']),
-      gender:        str(r['Gender']),
-      waktu:         str(r['Waktu']),
-      musim:         str(r['Musim']),
-      occasion:      str(r['Occasion']),
-      deskripsi:     str(r['Deskripsi']),
-      cocok_untuk:   str(r['Cocok Untuk']),
-      kata_kunci:    str(r['Kata Kunci']),
+      nomor: num(r['No'] ?? r['no'] ?? r['Nomor']),
+      nama: str(r['Nama Aroma (Clone)'] ?? r['Nama Aroma'] ?? r['Nama']),
+      nama_asli: str(r['Nama Parfum Asli'] ?? r['Nama Asli']),
+      brand_asli: str(r['Brand Asli'] ?? r['Brand']),
+      top_notes: str(r['Top Notes']),
+      middle_notes: str(r['Middle Notes']),
+      base_notes: str(r['Base Notes']),
+      longevity: str(r['Longevity']),
+      sillage: str(r['Sillage']),
+      konsentrasi: str(r['Konsentrasi']),
+      main_accords: str(r['Main Accords']),
+      gender: str(r['Gender']),
+      waktu: str(r['Waktu']),
+      musim: str(r['Musim']),
+      occasion: str(r['Occasion']),
+      deskripsi: str(r['Deskripsi']),
+      cocok_untuk: str(r['Cocok Untuk']),
+      kata_kunci: str(r['Kata Kunci']),
+      is_new: isTruthy(r['Aroma Baru'] ?? r['Baru'] ?? r['is_new']),
     })).filter(r => r.nama);
-    if (!payload.length) { msg('err', 'Tidak ada data valid. Pastikan kolom "Nama Aroma (Clone)" terisi.'); return; }
+    if (!payload.length) { msg('err', 'Tidak ada data valid.'); return; }
     if ($('replaceMode').checked) {
-      if (!confirm(`Hapus SEMUA data lama dan ganti dengan ${payload.length} baris baru?`)) return;
+      if (!confirm(`Hapus SEMUA data dan ganti dengan ${payload.length} baris?`)) return;
       msg('info', 'Menghapus data lama...');
       const { error: delErr } = await db.from(TABLE).delete().gt('id', 0);
-      if (delErr) throw new Error('Gagal menghapus data lama.');
+      if (delErr) throw new Error('Gagal hapus: ' + delErr.message);
     }
     msg('info', `Menyimpan ${payload.length} aroma...`);
     const { error } = await db.from(TABLE).insert(payload);
-    if (error) throw new Error('Gagal menyimpan data.');
-    msg('ok', `✅ Berhasil upload ${payload.length} aroma.`);
+    if (error) throw new Error('Gagal simpan: ' + error.message);
+    const newCount = payload.filter(p => p.is_new).length;
+    msg('ok', `✅ ${payload.length} aroma diupload${newCount ? ` (${newCount} bertanda BARU)` : ''}.`);
     $('replaceMode').checked = false;
     await loadAromas();
   } catch (err) {
@@ -878,13 +1195,16 @@ $('fileInput').addEventListener('change', async (e) => {
   }
 });
 
+// ============ REALTIME ============
 function subscribeRealtime() {
   db.channel('aroma-live')
     .on('postgres_changes', { event: '*', schema: 'public', table: TABLE }, () => loadAromas())
     .subscribe();
 }
 
+// ============ INIT ============
 (async () => {
+  updateViewIcon();
   await loadAromas();
   subscribeRealtime();
 })();
