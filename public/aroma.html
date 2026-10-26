@@ -66,8 +66,18 @@ button,.chip,.card,.admin-trigger,.toggle{touch-action:manipulation}
 .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .chip .n{opacity:.55;margin-left:3px;font-size:10px}
 
-/* ============ AROMA TERBARU — MARQUEE (kanan → kiri) ============ */
-.new-section{max-width:1200px;margin:0 auto;padding:20px;display:none;position:relative;background:linear-gradient(135deg,#FFFCF2 0%,#FFF8E8 100%);border-radius:20px;box-shadow:inset 0 0 0 1px rgba(212,184,117,.25);width:calc(100% - 32px)}
+/* ============ AROMA TERBARU — MARQUEE ============ */
+.new-section{
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px;
+  display:none;
+  position:relative;
+  background:linear-gradient(135deg,#FFFCF2 0%,#FFF8E8 100%);
+  border-radius:20px;
+  box-shadow:inset 0 0 0 1px rgba(212,184,117,.25);
+  width:calc(100% - 32px);
+}
 .new-section.visible{display:block}
 .new-header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
 .new-header h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin:0;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
@@ -75,20 +85,20 @@ button,.chip,.card,.admin-trigger,.toggle{touch-action:manipulation}
 .new-header p{margin:2px 0 0;color:var(--muted);font-size:12px}
 .new-count{background:linear-gradient(135deg,var(--gold-glow) 0%,var(--gold) 100%);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.03em}
 
-/* Container marquee — padding lega untuk shadow hover */
 .new-scroll{
   position:relative;
   overflow:hidden;
-  padding:16px 20px 28px;
+  padding:16px 20px 36px;
   margin:0 -20px;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);
-  mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);
 }
 .new-track{
   display:flex;
   width:max-content;
   animation:marquee 50s linear infinite;
   will-change:transform;
+  transform:translate3d(0,0,0);
 }
 .new-track:hover{animation-play-state:paused}
 .new-set{
@@ -98,6 +108,7 @@ button,.chip,.card,.admin-trigger,.toggle{touch-action:manipulation}
   flex-shrink:0;
 }
 .new-set .card{flex:0 0 200px}
+
 @keyframes marquee{
   from{transform:translate3d(0,0,0)}
   to{transform:translate3d(-50%,0,0)}
@@ -164,7 +175,6 @@ button,.chip,.card,.admin-trigger,.toggle{touch-action:manipulation}
   animation:gradientMove 4s linear infinite;
   will-change:background-position;
 }
-
 .card.is-new{
   border-color:var(--gold);
   background:linear-gradient(155deg,#FFFDF5 0%,#FFF9EC 60%,#fff 100%);
@@ -405,6 +415,7 @@ mark{background:rgba(212,184,117,.4);color:inherit;padding:0 2px;border-radius:2
 .toast{position:fixed;bottom:max(60px,calc(env(safe-area-inset-bottom) + 50px));left:50%;transform:translateX(-50%);background:var(--text);color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:200;animation:toastIn .25s ease;max-width:90vw;text-align:center}
 @keyframes toastIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
 
+/* ================= MOBILE — fix card terpotong ================= */
 @media (max-width:640px){
   .top-header-inner{padding:12px 16px}
   .top-nav{gap:0}
@@ -414,10 +425,28 @@ mark{background:rgba(212,184,117,.4);color:inherit;padding:0 2px;border-radius:2
   .hero{padding:28px 16px 10px}
   .hero p{font-size:13px;margin-bottom:20px}
   .results{padding:14px 12px 80px}
-  .grid{grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px}
-  .new-section{padding:16px 14px;width:calc(100% - 24px)}
-  .new-scroll{margin:0 -14px;padding:14px 14px 24px}
-  .new-set .card{flex:0 0 180px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+
+  /* AROMA TERBARU — full align dengan hasil, no horizontal padding */
+  .new-section{
+    width:calc(100% - 24px);
+    margin:0 12px;
+    padding:16px 0 6px;
+    border-radius:16px;
+  }
+  .new-header{padding:0 12px;margin-bottom:8px}
+  .new-header h2{font-size:1.1rem}
+  .new-header p{font-size:11px}
+  .new-scroll{
+    margin:0;
+    padding:10px 0 40px;
+    /* Fade 8px saja (subtle) — tidak "memotong" visual card */
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8px,#000 calc(100% - 8px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 8px,#000 calc(100% - 8px),transparent 100%);
+  }
+  .new-set{gap:8px;padding-right:8px}
+  .new-set .card{flex:0 0 152px}
+
   .card{padding:12px 12px 14px;border-radius:12px}
   .badges{gap:3px;margin-bottom:6px;padding-right:28px}
   .badge{font-size:8px;padding:2px 5px;letter-spacing:.02em}
@@ -440,12 +469,13 @@ mark{background:rgba(212,184,117,.4);color:inherit;padding:0 2px;border-radius:2
   .admin-aroma-row{padding:10px}
   .admin-aroma-row .name{font-size:12.5px}
 }
+
 @media (max-width:360px){
   .brand-name{font-size:.95rem}
   .brand img{height:24px}
   .top-nav a{padding:5px 7px;font-size:11px}
   .grid{grid-template-columns:1fr;gap:8px}
-  .new-set .card{flex:0 0 160px}
+  .new-set .card{flex:0 0 140px}
   .card h3{font-size:.95rem}
 }
 
@@ -465,7 +495,7 @@ mark{background:rgba(212,184,117,.4);color:inherit;padding:0 2px;border-radius:2
 .new-section::before{
   content:'';
   position:absolute;
-  top:0;left:20px;right:20px;height:2px;
+  top:0;left:16px;right:16px;height:2px;
   background:linear-gradient(90deg,transparent 0%,#F4C057 30%,#B08D4F 50%,#F4C057 70%,transparent 100%);
   background-size:200% auto;
   border-radius:2px;
@@ -687,6 +717,7 @@ const ADMIN_EMAIL = 'ainun.muh@gmail.com';
 const ADMIN_PASSWORD = '111111';
 const TABLE = 'aroma';
 const BUCKET = 'aroma-photos';
+const WA_NUMBER = '6285743243378'; // +62 857-4324-3378 → format wa.me
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -793,9 +824,6 @@ function buildAdvancedChips() {
   else if (badge) badge.remove();
 }
 
-/* ============================================================
-   AROMA TERBARU — MARQUEE (kanan → kiri, seamless loop)
-   ============================================================ */
 function renderNewSection() {
   const newItems = aromas
     .filter(a => a.is_new)
@@ -809,7 +837,6 @@ function renderNewSection() {
   const track = $('newTrack');
   if (!track) return;
 
-  // Dua set identik untuk loop seamless (translateX -50% = 1 set width)
   const set1 = document.createElement('div');
   set1.className = 'new-set';
   newItems.forEach(a => set1.appendChild(createCard(a)));
@@ -818,7 +845,6 @@ function renderNewSection() {
   set2.className = 'new-set';
   set2.setAttribute('aria-hidden', 'true');
   newItems.forEach(a => set2.appendChild(createCard(a)));
-  // Duplikat: tidak fokusable via keyboard (tapi tetap clickable dengan mouse/touch)
   set2.querySelectorAll('button, [tabindex]').forEach(el => { el.tabIndex = -1; });
 
   track.replaceChildren(set1, set2);
@@ -857,10 +883,7 @@ function createCard(a) {
   card.querySelector('.fav-btn').addEventListener('click', e => { e.stopPropagation(); toggleFav(a.id); });
   card.addEventListener('click', () => openDetail(a));
   card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openDetail(a);
-    }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(a); }
   });
   return card;
 }
@@ -872,7 +895,6 @@ function toggleFav(id) {
   favorites = [...favoritesSet];
   localStorage.setItem('scentia_favs', JSON.stringify(favorites));
   applyFilters();
-  // Sync semua fav-btn di marquee (grid sudah di-render ulang oleh applyFilters)
   document.querySelectorAll(`.new-track .fav-btn[data-fav="${id}"]`).forEach(btn => {
     btn.classList.toggle('active', isNowFav);
     const svg = btn.querySelector('svg');
@@ -966,15 +988,14 @@ function openDetail(a) {
     </div>`;
   $('detailFavBtn').onclick = () => { toggleFav(a.id); openDetail(a); };
   $('detailWaBtn').onclick = () => {
-    const text = `Cek aroma "${a.nama}"${a.nama_asli ? ' (klon dari ' + a.nama_asli + ')' : ''} di King Parfum Indonesia:\n${location.href.split('#')[0]}`;
-    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    const text = `Halo, saya tertarik dengan aroma "${a.nama}"${a.nama_asli ? ' (klon dari ' + a.nama_asli + ')' : ''} di King Parfum Indonesia.\n\nLink: ${location.href.split('#')[0] + '#aroma-' + a.id}`;
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text), '_blank');
   };
   $('detailCopyBtn').onclick = async () => {
     const url = location.href.split('#')[0] + '#aroma-' + a.id;
     try { await navigator.clipboard.writeText(url); toast('Link disalin'); } catch { toast('Gagal'); }
   };
   openModal('detailModal');
-  // Reset scroll supaya tidak carry-over dari aroma sebelumnya
   requestAnimationFrame(() => { if (body) body.scrollTop = 0; });
 }
 
@@ -1002,16 +1023,12 @@ document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click
 document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); }));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(m => closeModal(m.id)); });
 
-/* ============================================================
-   MODAL — fix layout shift scrollbar + scroll reset
-   ============================================================ */
 function openModal(id) {
   const m = $(id);
   if (!m) return;
   const wasOpen = document.querySelector('.modal.open');
   m.classList.add('open');
   if (!wasOpen) {
-    // Kompensasi scrollbar yang hilang → mencegah layout shift "card terpotong"
     const sbw = window.innerWidth - document.documentElement.clientWidth;
     if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
     document.body.classList.add('modal-open');
